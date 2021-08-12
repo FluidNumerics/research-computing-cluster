@@ -8,15 +8,11 @@ terraform {
 provider "google" {
 }
 
-locals {
-  region = trimsuffix(var.zone,substr(var.zone,-2,-2))
-}
-
-resource "google_cloudbuild_trigger" "fluid-slurm-gcp" {
+resource "google_cloudbuild_trigger" "rcc_cluster" {
   count = length(var.builds)
   name = ""
-  project = var.project
-  description = "Resarch computing cluster (${var.builds[count.index].branch})"
+  project = var.builds[count.index].project
+  description = var.builds[count.index].description
   github {
     owner = "FluidNumerics"
     name = "research-computing-cluster"
@@ -28,8 +24,6 @@ resource "google_cloudbuild_trigger" "fluid-slurm-gcp" {
     _ZONE = var.zone
     _SUBNETWORK = var.subnet
     _IMAGE_FAMILY = var.builds[count.index].img_family
-    _SOURCE_IMAGE_FAMILY = var.builds[count.index].source_img_family
-    _SOURCE_IMAGE_PROJECT = var.builds[count.index].source_img_project
     _PACKER_JSON = var.builds[count.index].packer_json
   }
   filename = "ci/cloudbuild.yaml"

@@ -4,13 +4,11 @@ variable "builds" {
   type = list(object({
     branch = string
     img_family = string
+    project = string
+    description = string
+    packer_json = string
   }))
   description = "List of branch build triggers"
-}
-
-variable "project" {
-  type = string
-  description = "GCP Project ID"
 }
 
 variable "zone" {
