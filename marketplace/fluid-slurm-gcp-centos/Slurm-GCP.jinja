@@ -1,0 +1,206 @@
+{% import "path_utils.jinja" as path_utils with context %}
+
+{% set allTiersCount = 4 %}
+{% set tiersWithNoExternalIPCount = 0 %}
+{% set network_externalIPs = properties["network_externalIP"] %}
+{% if network_externalIPs and network_externalIPs[0] == "NONE" %}
+{% set tiersWithNoExternalIPCount = tiersWithNoExternalIPCount + 1 %}
+{% endif %}
+{% set network_mainNetwork = path_utils.networkPath(properties["network_network"][0]) %}
+{% set login_externalIPs = properties["login_externalIP"] %}
+{% if login_externalIPs and login_externalIPs[0] == "NONE" %}
+{% set tiersWithNoExternalIPCount = tiersWithNoExternalIPCount + 1 %}
+{% endif %}
+{% set login_mainNetwork = path_utils.networkPath(properties["network_network"][0]) %}
+{% set controller_externalIPs = properties["controller_externalIP"] %}
+{% if controller_externalIPs and controller_externalIPs[0] == "NONE" %}
+{% set tiersWithNoExternalIPCount = tiersWithNoExternalIPCount + 1 %}
+{% endif %}
+{% set controller_mainNetwork = path_utils.networkPath(properties["network_network"][0]) %}
+{% set compute_externalIPs = properties["compute_externalIP"] %}
+{% if compute_externalIPs and compute_externalIPs[0] == "NONE" %}
+{% set tiersWithNoExternalIPCount = tiersWithNoExternalIPCount + 1 %}
+{% endif %}
+{% set compute_mainNetwork = path_utils.networkPath(properties["network_network"][0]) %}
+
+resources:
+  - name: controller-tier
+    type: controller_tier.jinja
+    properties:
+      instanceCount: 1
+      zone: {{ properties["zone"] }}
+      network: {{ properties["network_network"] }}
+      {% if properties.get("network_subnetwork") %}
+      subnetwork: {{ properties["network_subnetwork"] }}
+      {% endif %}
+      {% if properties.get("controller_externalIP") %}
+      externalIP: {{ properties["network_externalIP"] }}
+      {% endif %}
+      machineType: {{ properties["controller_machineType"] }}
+      bootDiskType: {{ properties["controller_bootDiskType"] }}
+      bootDiskSizeGb: {{ properties["controller_bootDiskSizeGb"] }}
+      enableComputeApi: True
+      partitions:
+        - name: {{ properties["input_partitionName"] }}
+          project: {{ env["project"] }}
+          max_time: {{ properties["input_maxWallTime"] }}
+          labels : { 'goog-dm' : {{env["deployment"]}} }
+          machines : 
+            - name: {{ properties["input_partitionName"] }}
+              zone: {{ properties["zone"] }}
+              machine_type: {{ properties["compute_machineType"] }}
+              external_ip : False
+              disk_type: {{ properties["compute_bootDiskType"] }}
+              disk_size_gb: {{ properties["compute_bootDiskSizeGb"] }}
+              static_node_count: {{ properties["input_staticNodeCount"] }}
+              max_node_count: {{ properties["input_maxNodeCount"] }}
+              gpu_type: {{ properties["compute_acceleratorType"] }}
+              gpu_count: {{ properties["compute_acceleratorCount"] }}
+              disable_hyperthreading: {{ properties["input_disableHyperthreading"] }}
+              preemptible_bursting: {{ properties["input_preemptibleBursting"] }}
+              n_local_ssds: {{ properties["input_n_local_ssds"] }}
+              local_ssd_mount_directory: {{ properties["input_local_ssd_mount_directory"] }}
+              vpc_subnet: {{ properties["network_subnetwork"][0] }}
+
+  - name: login-tier
+    type: login_tier.jinja
+    properties:
+      instanceCount: {{ properties["login_instanceCount"] }}
+      zone: {{ properties["zone"] }}
+      network: {{ properties["network_network"] }}
+      {% if properties.get("network_subnetwork") %}
+      subnetwork: {{ properties["network_subnetwork"] }}
+      {% endif %}
+      {% if properties.get("network_externalIP") %}
+      externalIP: {{ properties["network_externalIP"] }}
+      {% endif %}
+      machineType: {{ properties["login_machineType"] }}
+      bootDiskType: {{ properties["login_bootDiskType"] }}
+      bootDiskSizeGb: {{ properties["login_bootDiskSizeGb"] }}
+      partitions:
+        - name: {{ properties["input_partitionName"] }}
+          project: {{ env["project"] }}
+          max_time: {{ properties["input_maxWallTime"] }}
+          labels : { 'goog-dm' : {{env["deployment"]}} }
+          machines : 
+            - name: {{ properties["input_partitionName"] }}
+              zone: {{ properties["zone"] }}
+              machine_type: {{ properties["compute_machineType"] }}
+              external_ip : False
+              disk_type: {{ properties["compute_bootDiskType"] }}
+              disk_size_gb: {{ properties["compute_bootDiskSizeGb"] }}
+              static_node_count: {{ properties["input_staticNodeCount"] }}
+              max_node_count: {{ properties["input_maxNodeCount"] }}
+              gpu_type: {{ properties["compute_acceleratorType"] }}
+              gpu_count: {{ properties["compute_acceleratorCount"] }}
+              disable_hyperthreading: {{ properties["input_disableHyperthreading"] }}
+              preemptible_bursting: {{ properties["input_preemptibleBursting"] }}
+              n_local_ssds: {{ properties["input_n_local_ssds"] }}
+              local_ssd_mount_directory: {{ properties["input_local_ssd_mount_directory"] }}
+              vpc_subnet: {{ properties["network_subnetwork"][0] }}
+    metadata:
+      dependsOn:
+      - controller-tier
+      
+  - name: compute-tier
+    type: compute_tier.jinja
+    properties:
+      instanceCount: {{ properties["input_staticNodeCount"] }}
+      zone: {{ properties["zone"] }}
+      network: {{ properties["network_network"] }}
+      {% if properties.get("network_subnetwork") %}
+      subnetwork: {{ properties["network_subnetwork"] }}
+      {% endif %}
+      {% if properties.get("compute_externalIP") %}
+      externalIP: {{ properties["compute_externalIP"] }}
+      {% endif %}
+      machineType: {{ properties["compute_machineType"] }}
+      bootDiskType: {{ properties["compute_bootDiskType"] }}
+      bootDiskSizeGb: {{ properties["compute_bootDiskSizeGb"] }}
+      acceleratorType: {{ properties["compute_acceleratorType"] }}
+      acceleratorCount: {{ properties["compute_acceleratorCount"] }}
+      disableHyperthreading: {{ properties["input_disableHyperthreading"] }}
+      n_local_ssds: {{ properties["input_n_local_ssds"] }}
+      name: {{ properties["input_partitionName"] }}
+      partitions:
+        - name: {{ properties["input_partitionName"] }}
+          project: {{ env["project"] }}
+          max_time: {{ properties["input_maxWallTime"] }}
+          labels : { 'goog-dm' : {{env["deployment"]}} }
+          machines : 
+            - name: {{ properties["input_partitionName"] }}
+              zone: {{ properties["zone"] }}
+              machine_type: {{ properties["compute_machineType"] }}
+              external_ip : False
+              disk_type: {{ properties["compute_bootDiskType"] }}
+              disk_size_gb: {{ properties["compute_bootDiskSizeGb"] }}
+              static_node_count: {{ properties["input_staticNodeCount"] }}
+              max_node_count: {{ properties["input_maxNodeCount"] }}
+              gpu_type: {{ properties["compute_acceleratorType"] }}
+              gpu_count: {{ properties["compute_acceleratorCount"] }}
+              disable_hyperthreading: {{ properties["input_disableHyperthreading"] }}
+              preemptible_bursting: {{ properties["input_preemptibleBursting"] }}
+              n_local_ssds: {{ properties["input_n_local_ssds"] }}
+              local_ssd_mount_directory: {{ properties["input_local_ssd_mount_directory"] }}
+              vpc_subnet: {{ properties["network_subnetwork"][0] }}
+    metadata:
+      dependsOn:
+      - controller-tier
+
+outputs:
+  - name: deployment
+    value: {{ env["deployment"] }}
+  - name: project
+    value: {{ env["project"] }}
+  - name: network_mainNetwork
+    value: {{ network_mainNetwork }}
+  {% for vmIndex in range(properties["login_instanceCount"]) %}
+  - name: login_vmId{{ vmIndex }}
+    value: $(ref.login-tier.vmId{{ vmIndex }})
+  - name: login_vmExternalIP{{ vmIndex }}
+    value: $(ref.login-tier.vmExternalIP{{ vmIndex }})
+  - name: login_vmInternalIP{{ vmIndex }}
+    value: $(ref.login-tier.vmInternalIP{{ vmIndex }})
+  - name: login_vmName{{ vmIndex }}
+    value: $(ref.login-tier.vmName{{ vmIndex }})
+  - name: login_vmSelfLink{{ vmIndex }}
+    value: $(ref.login-tier.vmSelfLink{{ vmIndex }})
+  {% endfor %}
+  - name: login_mainNetwork
+    value: {{ login_mainNetwork }}
+  {% for vmIndex in range(1) %}
+  - name: controller_vmId{{ vmIndex }}
+    value: $(ref.controller-tier.vmId{{ vmIndex }})
+  - name: controller_vmExternalIP{{ vmIndex }}
+    value: $(ref.controller-tier.vmExternalIP{{ vmIndex }})
+  - name: controller_vmInternalIP{{ vmIndex }}
+    value: $(ref.controller-tier.vmInternalIP{{ vmIndex }})
+  - name: controller_vmName{{ vmIndex }}
+    value: $(ref.controller-tier.vmName{{ vmIndex }})
+  - name: controller_vmSelfLink{{ vmIndex }}
+    value: $(ref.controller-tier.vmSelfLink{{ vmIndex }})
+  {% endfor %}
+  - name: controller_mainNetwork
+    value: {{ controller_mainNetwork }}
+  {% for vmIndex in range(properties["input_staticNodeCount"]) %}
+  - name: compute_vmId{{ vmIndex }}
+    value: $(ref.compute-tier.vmId{{ vmIndex }})
+  - name: compute_vmExternalIP{{ vmIndex }}
+    value: $(ref.compute-tier.vmExternalIP{{ vmIndex }})
+  - name: compute_vmInternalIP{{ vmIndex }}
+    value: $(ref.compute-tier.vmInternalIP{{ vmIndex }})
+  - name: compute_vmName{{ vmIndex }}
+    value: $(ref.compute-tier.vmName{{ vmIndex }})
+  - name: compute_vmSelfLink{{ vmIndex }}
+    value: $(ref.compute-tier.vmSelfLink{{ vmIndex }})
+  {% endfor %}
+  - name: compute_mainNetwork
+    value: {{ compute_mainNetwork }}
+  - name: tiersWithNoExternalIPStatus
+    {% if tiersWithNoExternalIPCount == 0 %}
+    value: 'NONE'
+    {% elif tiersWithNoExternalIPCount < allTiersCount %}
+    value: 'SOME'
+    {% else %}
+    value: 'ALL'
+    {% endif %}

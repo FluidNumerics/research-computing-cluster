@@ -1,0 +1,39 @@
+imports:
+  - name: common.py
+    path: common/common.py
+  - name: default.py
+    path: common/default.py
+  - name: password.py
+    path: common/password.py
+  - name: path_utils.jinja
+    path: common/path_utils.jinja
+  - name: vm_instance.py
+    path: common/vm_instance.py
+
+required:
+  - zone
+  - network
+
+properties:
+  zone:
+    type: string
+    x-googleProperty:
+      type: GCE_ZONE
+  network:
+    type: array
+    default: [default]
+    minItems: 1
+    maxItems: 1
+    x-googleProperty:
+      type: GCE_NETWORK
+      gceNetwork:
+        allowSharedVpcs: True
+  subnetwork:
+    type: array
+    minItems: 1
+    maxItems: 1
+    x-googleProperty:
+      type: GCE_SUBNETWORK
+      zoneProperty: zone
+      gceSubnetwork:
+        networkProperty: network

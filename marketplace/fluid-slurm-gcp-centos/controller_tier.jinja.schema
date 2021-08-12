@@ -1,0 +1,175 @@
+imports:
+  - name: common.py
+    path: common/common.py
+  - name: default.py
+    path: common/default.py
+  - name: password.py
+    path: common/password.py
+  - name: path_utils.jinja
+    path: common/path_utils.jinja
+  - name: vm_instance.py
+    path: common/vm_instance.py
+  - name: startup-script.sh
+    path: scripts/startup-script.sh
+  - name: cluster-config.json
+    path: scripts/cluster-config.json
+
+required:
+  - instanceCount
+  - zone
+  - machineType
+  - network
+  - bootDiskType
+  - bootDiskSizeGb
+
+properties:
+  instanceCount:
+    type: integer
+    default: 1
+    minimum: 1
+    maximum: 1
+  zone:
+    type: string
+    x-googleProperty:
+      type: GCE_ZONE
+  machineType:
+    type: string
+    default: n1-standard-4
+    x-googleProperty:
+      type: GCE_MACHINE_TYPE
+      zoneProperty: zone
+      gceMachineType:
+        minCpu: 2
+        minRamGb: 4.0
+  network:
+    type: array
+    default: [default]
+    minItems: 1
+    maxItems: 1
+    x-googleProperty:
+      type: GCE_NETWORK
+      gceNetwork:
+        allowSharedVpcs: True
+        machineTypeProperty: machineType
+  subnetwork:
+    type: array
+    minItems: 1
+    maxItems: 1
+    x-googleProperty:
+      type: GCE_SUBNETWORK
+      zoneProperty: zone
+      gceSubnetwork:
+        networkProperty: network
+  externalIP:
+    type: array
+    default: [EPHEMERAL]
+    minItems: 1
+    maxItems: 1
+    x-googleProperty:
+      type: GCE_EXTERNAL_IP
+      gceExternalIp:
+        networkProperty: network
+        notConfigurable: False
+        allowStaticIps: True
+  enableComputeApi:
+    type: boolean
+    default: True
+  bootDiskType:
+    type: string
+    default: pd-standard
+    x-googleProperty:
+      type: GCE_DISK_TYPE
+      zoneProperty: zone
+  bootDiskSizeGb:
+    type: integer
+    default: 50
+    minimum: 50
+    maximum: 10000
+    x-googleProperty:
+      type: GCE_DISK_SIZE
+      gceDiskSize:
+        diskTypeProperty: bootDiskType
+
+  partitions:
+    type: array
+    description: An array of configurations for specifying multiple machine types residing in their own Slurm partitions.
+    items:
+      type: object
+      required :  
+      - name
+      - project
+      - max_time
+      - labels
+      - machines
+      properties :
+        name:
+          type        : string
+          description : Name of the compute node partition
+
+        project:
+          type        : string
+          description : Project ID hosting the compute partition
+
+        labels:
+          type        : object
+          default     : {}
+          description : Labels to add to compute instances. List of key, value
+                        pairs.
+        max_time:
+          type        : string
+          default     : INFINITE
+          description : A description of the variable 
+
+        machines :
+          type : array
+          items:
+            type: object
+            required :
+              - name
+              - disk_size_gb
+              - disk_type
+              - disable_hyperthreading
+              - external_ip
+              - gpu_count
+              - gpu_type
+              - n_local_ssds
+              - local_ssd_mount_directory
+              - machine_type
+              - max_node_count
+              - static_node_count
+              - preemptible_bursting
+              - vpc_subnet
+              - zone
+
+  mounts:
+    type: array
+    default: []
+    description: An array of configurations for specify network attached storage
+    items:
+      type: object
+      required :  
+      - mount_directory
+      - protocol
+      - server_directory
+      - mount_options
+      properties :
+
+        mount_directory:
+          type        : string
+          description : The directory on the slurm-gcp cluster where the remote storage
+                        will be mounted
+   
+        protocol:
+          enum        : ["nfs", "lustre"]
+          description : Mount protocol.
+
+        server_directory: 
+          type        : string
+          description : Full path, including ip-address/server name, to the remote directory
+                        to be mounted to the slurm-gcp cluster (e.g. 10.10.0.1:/home)
+
+        mount_options:
+          type        : string
+          description : Comma separated list of mount options (e.g. rw,hard,intr)
+
+

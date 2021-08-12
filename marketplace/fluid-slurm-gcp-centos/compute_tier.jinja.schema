@@ -1,0 +1,161 @@
+imports:
+  - name: common.py
+    path: common/common.py
+  - name: default.py
+    path: common/default.py
+  - name: password.py
+    path: common/password.py
+  - name: path_utils.jinja
+    path: common/path_utils.jinja
+  - name: vm_instance.py
+    path: common/vm_instance.py
+  - name: startup-script.sh
+    path: scripts/startup-script.sh
+
+required:
+  - zone
+  - machineType
+  - network
+  - bootDiskType
+  - bootDiskSizeGb
+  - disableHyperthreading
+  - n_local_ssds
+  - name
+
+properties:
+  zone:
+    type: string
+    x-googleProperty:
+      type: GCE_ZONE
+  machineType:
+    type: string
+    default: n1-standard-64
+    x-googleProperty:
+      type: GCE_MACHINE_TYPE
+      zoneProperty: zone
+  acceleratorType:
+    type: string
+    default: nvidia-tesla-v100
+    x-googleProperty:
+      type: GCE_GPU_TYPE
+      gceGpuType:
+        machineTypeProperty: machineType
+        gpuType:
+          - nvidia-tesla-k80
+          - nvidia-tesla-p100
+          - nvidia-tesla-v100
+          - nvidia-tesla-p4
+          - nvidia-tesla-t4
+  acceleratorCount:
+    type: integer
+    default: 0
+    x-googleProperty:
+      type: GCE_GPU_COUNT
+      gceGpuCount:
+        machineTypeProperty: machineType
+  network:
+    type: array
+    default: [default]
+    minItems: 1
+    maxItems: 1
+    x-googleProperty:
+      type: GCE_NETWORK
+      gceNetwork:
+        allowSharedVpcs: True
+        machineTypeProperty: machineType
+  subnetwork:
+    type: array
+    minItems: 1
+    maxItems: 1
+    x-googleProperty:
+      type: GCE_SUBNETWORK
+      zoneProperty: zone
+      gceSubnetwork:
+        networkProperty: network
+  externalIP:
+    type: array
+    default: [NONE]
+    minItems: 1
+    maxItems: 1
+    x-googleProperty:
+      type: GCE_EXTERNAL_IP
+      gceExternalIp:
+        networkProperty: network
+        notConfigurable: False
+        allowStaticIps: True
+  bootDiskType:
+    type: string
+    default: pd-standard
+    x-googleProperty:
+      type: GCE_DISK_TYPE
+      zoneProperty: zone
+  bootDiskSizeGb:
+    type: integer
+    default: 20
+    minimum: 20
+    maximum: 10000
+    x-googleProperty:
+      type: GCE_DISK_SIZE
+      gceDiskSize:
+        diskTypeProperty: bootDiskType
+  disableHyperthreading:
+    type: boolean
+    default: False
+  n_local_ssds: 
+    type: integer
+    default: 0
+    minimum: 0
+    maximum: 8 
+  name:
+    type: string
+
+  partitions:
+    type: array
+    description: An array of configurations for specifying multiple machine types residing in their own Slurm partitions.
+    items:
+      type: object
+      required :  
+      - name
+      - project
+      - max_time
+      - labels
+      - machines
+      properties :
+        name:
+          type        : string
+          description : Name of the compute node partition
+
+        project:
+          type        : string
+          description : Project ID hosting the compute partition
+
+        labels:
+          type        : object
+          default     : {}
+          description : Labels to add to compute instances. List of key, value
+                        pairs.
+        max_time:
+          type        : string
+          default     : INFINITE
+          description : A description of the variable 
+
+        machines :
+          type : array
+          items:
+            type: object
+            required :
+              - name
+              - disk_size_gb
+              - disk_type
+              - disable_hyperthreading
+              - external_ip
+              - gpu_count
+              - gpu_type
+              - n_local_ssds
+              - local_ssd_mount_directory
+              - machine_type
+              - max_node_count
+              - static_node_count
+              - preemptible_bursting
+              - vpc_subnet
+              - zone

@@ -1,0 +1,1 @@
+{"commands":["spack --version","module avail","sinfo","srun -n1 --partition=n1-standard-2 hostname","srun -n1 --gres=gpu:1 --partition=k80-gpu nvidia-smi","srun -n1 --partition=us-central1 hostname","sbatch --partition=n1-standard-2 --mem=1g -n2 /apps/share/helloworld.slurm"]}
