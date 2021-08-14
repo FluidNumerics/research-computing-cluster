@@ -1,8 +1,8 @@
 {
   "variables": {
     "project_id": "fluid-cluster-ops",
-    "image_name": "fluid-slurm-gcp-centos-7-latest",
-    "image_family": "fluid-slurm-gcp-centos-7",
+    "image_name": "fluid-slurm-gcp-ubuntu-7-latest",
+    "image_family": "fluid-slurm-gcp-ubuntu-7",
     "install_root": "/opt",
     "zone": "us-central1-c",
     "subnet": "default"
@@ -10,7 +10,7 @@
   "builders": [{
     "type": "googlecompute",
     "project_id": "{{user `project_id`}}",
-    "source_image_family": "schedmd-slurm-20-11-7-centos-7",
+    "source_image_family": "schedmd-slurm-20-11-7-ubuntu-2004",
     "source_image_project_id": "research-computing-cloud",
     "machine_type": "n1-standard-16",
     "disk_size": 50,
@@ -18,8 +18,8 @@
     "subnetwork" :"{{user `subnet`}}",
     "image_family": "{{user `image_family`}}",
     "image_name": "{{user `image_name`}}",
-    "image_licenses": ["projects/fluid-cluster-ops/global/licenses/fluid-slurm-gcp"],
-    "instance_name":"rcc-centos-{{timestamp}}",
+    "image_licenses": ["projects/fluid-cluster-ops/global/licenses/fluid-slurm-gcp-ubuntu"],
+    "instance_name":"rcc-ubuntu-{{timestamp}}",
     "tags":["cloudbuild"],
     "scopes":["https://www.googleapis.com/auth/cloud-platform"],
     "ssh_username": "packer",
@@ -33,7 +33,7 @@
     },
     {
       "type": "file",
-      "source": "img/centos/packages.yaml",
+      "source": "img/ubuntu/packages.yaml",
       "destination": "/tmp/"
     },
     {
@@ -46,7 +46,7 @@
       "environment_vars": ["INSTALL_ROOT={{user `install_root`}}",
                            "ARCH=x86_64"],
       "execute_command": "chmod +x {{ .Path }}; {{ .Vars }} sudo -E bash '{{ .Path }}'",
-      "script": "img/centos/install.sh"
+      "script": "img/ubuntu/install.sh"
     },
     {
       "type": "shell",
@@ -76,7 +76,7 @@
     {
       "type": "shell",
       "execute_command": "chmod +x {{ .Path }}; {{ .Vars }} sudo -E bash '{{ .Path }}'",
-      "script": "img/centos/clear-messages.sh"
+      "script": "img/ubuntu/clear-messages.sh"
     }
   ]  
 }
