@@ -3,8 +3,9 @@
 
 function system_deps(){
 
-    apt update -y
-    apt install -y libnuma-dev python3-dev python3-pip build-essential
+    export DEBIAN_FRONTEND=noninteractive
+    apt-get update -y
+    apt-get install -y libnuma-dev python3-dev python3-pip build-essential
     pip3 install --upgrade google-cloud-storage google-api-python-client oauth2client google-cloud \
     	               cython pyyaml parse docopt jsonschema dictdiffer
 }
