@@ -14,6 +14,12 @@ builds = [{ branch="v3.0.x",
             packer_json = "img/centos/packer.rcc.json"
           },
           { branch="v3.0.x",
+            img_family="rcc-centos-7-intel-v3"
+            project = "research-computing-cloud"
+            description = "Research computing cluster ([Intel Select] CentOS RCC v3.0)"
+            packer_json = "img/centos-intel/packer.rcc.json"
+          },
+          { branch="v3.0.x",
             img_family="rcc-debian-10-v3"
             project = "fluid-cluster-ops"
             description = "Research computing cluster (Debian Marketplace v3.0)"
