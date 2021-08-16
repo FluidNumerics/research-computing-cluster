@@ -58,4 +58,4 @@ system_deps
 
 cluster_services_setup
 
-rocm_setup
+#rocm_setup
