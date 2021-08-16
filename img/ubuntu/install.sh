@@ -4,7 +4,8 @@
 function system_deps(){
 
     export DEBIAN_FRONTEND=noninteractive
-    apt-get update -y
+    dpkg  --configure -a
+    apt-get update -y 
     apt-get install -y libnuma-dev python3-dev python3-pip build-essential
     pip3 install --upgrade google-cloud-storage google-api-python-client oauth2client google-cloud \
     	               cython pyyaml parse docopt jsonschema dictdiffer
@@ -37,13 +38,13 @@ function cluster_services_setup(){
 function rocm_setup(){
     wget -q -O - https://repo.radeon.com/rocm/rocm.gpg.key | sudo apt-key add -
     echo 'deb [arch=amd64] https://repo.radeon.com/rocm/apt/4.2/ xenial main' | sudo tee /etc/apt/sources.list.d/rocm.list
-    apt update -y
-    apt install -y rocm-dev
+    apt-get update -y
+    apt-get install -y rocm-dev
     
     echo 'ADD_EXTRA_GROUPS=1' | sudo tee -a /etc/adduser.conf
     echo 'EXTRA_GROUPS=video' | sudo tee -a /etc/adduser.conf
     
-    cat > /etc/profile.d/rocm.sh << EOL
+    cat > /etc/profile.d/z11-rocm.sh << EOL
 #!/bin/bash
 
 export PATH=\${PATH}:/opt/rocm/bin
