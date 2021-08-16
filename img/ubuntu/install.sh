@@ -21,8 +21,8 @@ function cluster_services_setup(){
     cp /tmp/cluster-services/src/cluster_services.py ${INSTALL_ROOT}/cls/build/
     
     # Compile cluster-services to a binary
-    /usr/local/bin/cython --embed -o /apps/cls/build/cluster_services.c /apps/cls/build/cluster_services.py
-    gcc -O2 -I /usr/include/python3.8/ -o /apps/cls/bin/cluster-services /apps/cls/build/cluster_services.c  -L/usr/lib/x86_64-linux-gnu/ -lpython3.8 -lpthread -lm -lutil -ldl
+    /usr/local/bin/cython --embed -o ${INSTALL_ROOT}/cls/build/cluster_services.c ${INSTALL_ROOT}/cls/build/cluster_services.py
+    gcc -O2 -I /usr/include/python3.8/ -o ${INSTALL_ROOT}/cls/bin/cluster-services ${INSTALL_ROOT}/cls/build/cluster_services.c  -L/usr/lib/x86_64-linux-gnu/ -lpython3.8 -lpthread -lm -lutil -ldl
 
     rm -r ${INSTALL_ROOT}/cls/build
     

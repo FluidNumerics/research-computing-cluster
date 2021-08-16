@@ -5,7 +5,7 @@ function system_deps(){
 
     export DEBIAN_FRONTEND=noninteractive
     dpkg  --configure -a
-    apt-get update -y
+    apt-get update -y 
     apt-get install -y libnuma-dev python3-dev python3-pip build-essential
     pip3 install --upgrade google-cloud-storage google-api-python-client oauth2client google-cloud \
     	               cython pyyaml parse docopt jsonschema dictdiffer
@@ -21,8 +21,8 @@ function cluster_services_setup(){
     cp /tmp/cluster-services/src/cluster_services.py ${INSTALL_ROOT}/cls/build/
     
     # Compile cluster-services to a binary
-    /usr/local/bin/cython --embed -o /apps/cls/build/cluster_services.c /apps/cls/build/cluster_services.py
-    gcc -O2 -I /usr/include/python3.8/ -o /apps/cls/bin/cluster-services /apps/cls/build/cluster_services.c  -L/usr/lib/x86_64-linux-gnu/ -lpython3.8 -lpthread -lm -lutil -ldl
+    /usr/local/bin/cython --embed -o ${INSTALL_ROOT}/cls/build/cluster_services.c ${INSTALL_ROOT}/cls/build/cluster_services.py
+    gcc -O2 -I /usr/include/python3.8/ -o ${INSTALL_ROOT}/cls/bin/cluster-services ${INSTALL_ROOT}/cls/build/cluster_services.c  -L/usr/lib/x86_64-linux-gnu/ -lpython3.8 -lpthread -lm -lutil -ldl
 
     rm -r ${INSTALL_ROOT}/cls/build
     
@@ -36,15 +36,10 @@ function cluster_services_setup(){
 }
 
 function rocm_setup(){
-
-    apt-get install -y lsb-release
-    wget -q -O - https://repo.radeon.com/rocm/rocm.gpg.key | apt-key add -
-    echo 'deb [arch=amd64] https://repo.radeon.com/rocm/apt/4.2/ xenial main' | tee /etc/apt/sources.list.d/rocm.list
-    wget https://people.debian.org/~paravoid/python-all/unofficial-python-all.asc
-    mv unofficial-python-all.asc /etc/apt/trusted.gpg.d
-    echo "deb http://people.debian.org/~paravoid/python-all $(lsb_release -sc) main" | tee /etc/apt/sources.list.d/python-all.list
+    wget -q -O - https://repo.radeon.com/rocm/rocm.gpg.key | sudo apt-key add -
+    echo 'deb [arch=amd64] https://repo.radeon.com/rocm/apt/4.2/ xenial main' | sudo tee /etc/apt/sources.list.d/rocm.list
     apt-get update -y
-    apt-get install -y rocm-dev rocm-libs
+    apt-get install -y rocm-dev
     
     echo 'ADD_EXTRA_GROUPS=1' | sudo tee -a /etc/adduser.conf
     echo 'EXTRA_GROUPS=video' | sudo tee -a /etc/adduser.conf

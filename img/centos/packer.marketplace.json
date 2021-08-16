@@ -60,13 +60,6 @@
       "environment_vars": ["INSTALL_ROOT={{user `install_root`}}",
                            "ARCH=x86_64"],
       "execute_command": "chmod +x {{ .Path }}; {{ .Vars }} sudo -E bash '{{ .Path }}'",
-      "script": "img/common/compiler-setup.sh"
-    },
-    {
-      "type": "shell",
-      "environment_vars": ["INSTALL_ROOT={{user `install_root`}}",
-                           "ARCH=x86_64"],
-      "execute_command": "chmod +x {{ .Path }}; {{ .Vars }} sudo -E bash '{{ .Path }}'",
       "script": "img/common/fluid-cicb-setup.sh"
     },
     {
@@ -75,6 +68,13 @@
                            "ARCH=x86_64"],
       "execute_command": "chmod +x {{ .Path }}; {{ .Vars }} sudo -E bash '{{ .Path }}'",
       "script": "img/common/dmtcp-setup.sh"
+    },
+    {
+      "type": "shell",
+      "environment_vars": ["INSTALL_ROOT={{user `install_root`}}",
+                           "ARCH=x86_64"],
+      "execute_command": "chmod +x {{ .Path }}; {{ .Vars }} sudo -E bash '{{ .Path }}'",
+      "script": "img/common/compiler-setup.sh"
     },
     {
       "type": "shell",

@@ -8,8 +8,6 @@
 
 source ${INSTALL_ROOT}/spack/share/spack/setup-env.sh
 
-# Install singularity
-spack install singularity target=${ARCH}
 
 COMPILERS=("intel-oneapi-compilers"
            "gcc@10.2.0"
