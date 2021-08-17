@@ -73,7 +73,7 @@
       "environment_vars": ["INSTALL_ROOT={{user `install_root`}}",
                            "ARCH=x86_64"],
       "execute_command": "chmod +x {{ .Path }}; {{ .Vars }} sudo -E bash '{{ .Path }}'",
-      "script": "img/common/compiler-setup.sh"
+      "script": "img/centos/compiler-setup.sh"
     },
     {
       "type": "shell",

@@ -11,9 +11,8 @@ source ${INSTALL_ROOT}/spack/share/spack/setup-env.sh
 
 COMPILERS=("intel-oneapi-compilers"
            "gcc@10.2.0"
-	   "gcc@9.4.0"
-	   "gcc@8.5.0"
-	   "gcc@7.5.0")
+	   "aompi@3.10.0"
+	   "aocc@3.1.0 +license-accepted")
 
 ## Install "after-market" compiler
 for COMPILER in "${COMPILERS[@]}"; do
