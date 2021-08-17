@@ -22,7 +22,7 @@ function cluster_services_setup(){
     
     # Compile cluster-services to a binary
     /usr/local/bin/cython --embed -o ${INSTALL_ROOT}/cls/build/cluster_services.c ${INSTALL_ROOT}/cls/build/cluster_services.py
-    gcc -O2 -I /usr/include/python3.8/ -o ${INSTALL_ROOT}/cls/bin/cluster-services ${INSTALL_ROOT}/cls/build/cluster_services.c  -L/usr/lib/x86_64-linux-gnu/ -lpython3.8 -lpthread -lm -lutil -ldl
+    gcc -O2 -I /usr/include/python3.7m/ -o ${INSTALL_ROOT}/cls/bin/cluster-services ${INSTALL_ROOT}/cls/build/cluster_services.c  -L/usr/lib/x86_64-linux-gnu/ -lpython3.7m -lpthread -lm -lutil -ldl
 
     rm -r ${INSTALL_ROOT}/cls/build
     
