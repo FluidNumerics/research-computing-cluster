@@ -38,7 +38,7 @@ function rocm_setup(){
     cat > /etc/yum.repos.d/rocm.repo <<EOL
 [ROCm]
 name=ROCm
-baseurl=https://repo.radeon.com/rocm/yum/4.2
+baseurl=https://repo.radeon.com/rocm/yum/rpm
 enabled=1
 gpgcheck=1
 gpgkey=https://repo.radeon.com/rocm/rocm.gpg.key
