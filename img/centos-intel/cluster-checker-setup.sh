@@ -14,4 +14,4 @@ EOF
 repoquery --repofrompath=reponame,https://yum.repos.intel.com/oneapi --repoid=reponame -a | grep clck
 
 yum update -y
-yum install -y intel-oneapi-clck-2021.1.1-68
+yum install -y intel-oneapi-clck
