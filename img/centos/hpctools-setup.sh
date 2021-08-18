@@ -18,3 +18,19 @@ spack install intel-oneapi-vtune@2021.6.0 % gcc@4.8.5 target=${ARCH}
 
 spack gc -y
 spack module lmod refresh --delete-tree -y
+
+
+# Benchmarks
+#
+#   hpcc - installs HPL, DGEMM, STREAM
+#
+COMPILERS=("gcc@10.2.0"
+           "gcc@9.4.0"
+           "clang"
+	   "intel")
+for COMPILER in "${COMPILERS[@]}"; do
+  spack install hpcc % ${COMPILER} target=x86_64
+  spack install hpcc % ${COMPILER} target=cascadelake
+  spack install hpcc % ${COMPILER} target=zen3
+done
+
