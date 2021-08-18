@@ -8,21 +8,24 @@
 
 source ${INSTALL_ROOT}/spack/share/spack/setup-env.sh
 
-COMPILERS=("aocc@3.1.0 +license-agreed"
-	   "aomp@3.10.0"
-           "gcc@10.2.0")
+## Install "after-market" GNU compiler
+COMPILERS=("gcc@10.2.0"
+           "gcc@9.4.0"
+	   "intel-oneapi-compilers@2021.3.0")
 
-## Install "after-market" compiler
 for COMPILER in "${COMPILERS[@]}"; do
   spack install ${COMPILER} % gcc@4.8.5 target=${ARCH}
 done
 
+# Install OpenMPI with desired compilers
+COMPILERS=("gcc@10.2.0"
+           "gcc@9.4.0"
+           "clang"
+	   "intel")
 for COMPILER in "${COMPILERS[@]}"; do
   spack load ${COMPILER} && spack compiler find --scope site && spack unload ${COMPILER}
   if [[ "$COMPILER" == *"intel"* ]];then
     spack install openmpi@4.0.5 % intel target=${ARCH}
-  elif [[ "$COMPILER" == *"aocc"* ]];then
-    spack install openmpi@4.0.5 % aocc target=${ARCH}
   else
     spack install openmpi@4.0.5 % ${COMPILER} target=${ARCH}
   fi
