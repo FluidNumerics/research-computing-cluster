@@ -10,7 +10,7 @@ provider "google" {
 
 resource "google_cloudbuild_trigger" "rcc_cluster" {
   count = length(var.builds)
-  name = ""
+  name = "RCC-Cluster-${var.builds[count.index].img_family}"
   project = var.builds[count.index].project
   description = var.builds[count.index].description
   github {
