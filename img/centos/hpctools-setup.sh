@@ -32,5 +32,9 @@ for COMPILER in "${COMPILERS[@]}"; do
   spack install hpcc % ${COMPILER} target=x86_64
   spack install hpcc % ${COMPILER} target=cascadelake
   spack install hpcc % ${COMPILER} target=zen3
+
+  spack install hpcg % ${COMPILER} target=x86_64
+  spack install hpcg % ${COMPILER} target=cascadelake
+  spack install hpcg % ${COMPILER} target=zen3
 done
 
