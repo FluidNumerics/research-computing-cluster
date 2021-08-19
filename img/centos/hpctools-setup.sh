@@ -36,5 +36,8 @@ for COMPILER in "${COMPILERS[@]}"; do
   spack install hpcg % ${COMPILER} target=x86_64
   spack install hpcg % ${COMPILER} target=cascadelake
   spack install hpcg % ${COMPILER} target=zen3
+
+  spack install osu-micro-benchmarks % ${COMPILER} target=x86_64
+
 done
 

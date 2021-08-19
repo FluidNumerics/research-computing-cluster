@@ -8,6 +8,24 @@
 
 source ${INSTALL_ROOT}/spack/share/spack/setup-env.sh
 
+# Set up AMD Clang compilers (provided by ROCm)
+spack compiler rm clang # Remove existing clang compiler
+cat << EOF >>  ${INSTALL_ROOT}/spack/etc/spack/compilers.yaml
+- compiler:
+    spec: clang@13.0.0
+    paths:
+      cc: /opt/rocm/bin/amdclang
+      cxx: /opt/rocm/bin/amdclang++
+      f77: /opt/rocm/bin/amdflang
+      fc: /opt/rocm/bin/amdflang
+    flags: {}
+    operating_system: centos7
+    target: x86_64
+    modules: []
+    environment: {}
+    extra_rpaths: []
+EOF
+
 ## Install "after-market" GNU compiler
 COMPILERS=("gcc@10.2.0"
            "gcc@9.4.0"
