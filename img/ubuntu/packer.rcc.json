@@ -66,7 +66,7 @@
       "environment_vars": ["INSTALL_ROOT={{user `install_root`}}",
                            "ARCH=x86_64"],
       "execute_command": "chmod +x {{ .Path }}; {{ .Vars }} sudo -E bash '{{ .Path }}'",
-      "script": "img/common/dmtcp-setup.sh"
+      "script": "img/ubuntu/hpctools-setup.sh"
     },
     {
       "type": "shell",
