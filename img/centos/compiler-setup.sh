@@ -10,7 +10,8 @@ source ${INSTALL_ROOT}/spack/share/spack/setup-env.sh
 
 
 # Install "after-market" compilers
-COMPILERS=("gcc@10.2.0"
+COMPILERS=("gcc@11.2.0"
+           "gcc@10.3.0"
            "gcc@9.4.0"
 	   "intel-oneapi-compilers@2021.3.0")
 
@@ -28,7 +29,8 @@ sed -i "s#fc: null#fc: /opt/rocm/bin/amdflang#" ${INSTALL_ROOT}/spack/etc/spack/
 cat ${INSTALL_ROOT}/spack/etc/spack/compilers.yaml
 
 # Install OpenMPI with desired compilers
-COMPILERS=("gcc@10.2.0"
+COMPILERS=("gcc@11.2.0"
+           "gcc@10.3.0"
            "gcc@9.4.0"
            "clang@13.0.0"
 	   "intel")

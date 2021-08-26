@@ -13,7 +13,7 @@ source ${INSTALL_ROOT}/spack/share/spack/setup-env.sh
 spack install dmtcp % gcc@4.8.5 target=${ARCH}
 
 # Profilers
-spack install hpctoolkit@2021.05.15 +cuda~viewer % gcc@10.2.0 target=${ARCH}  # HPC Toolkit requires gcc 7 or above
+spack install hpctoolkit@2021.05.15 +cuda~viewer % gcc@10.3.0 target=${ARCH}  # HPC Toolkit requires gcc 7 or above
 spack install intel-oneapi-vtune@2021.6.0 % gcc@4.8.5 target=${ARCH}
 
 spack gc -y
@@ -24,7 +24,8 @@ spack module lmod refresh --delete-tree -y
 #
 #   hpcc - installs HPL, DGEMM, STREAM
 #
-COMPILERS=("gcc@10.2.0"
+COMPILERS=("gcc@11.2.0"
+           "gcc@10.3.0"
            "gcc@9.4.0"
            "clang"
 	   "intel")
