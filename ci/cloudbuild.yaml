@@ -20,9 +20,9 @@ steps:
 
 substitutions:
     _ZONE: 'us-central1-c' # default value
-    _IMAGE_FAMILY: 'fluid-slurm-gcp-centos-7-dev'
+    _IMAGE_FAMILY: 'rcc-centos-7-dev'
     _SUBNETWORK: 'default'
     _INSTALL_ROOT: '/opt'
     _PACKER_JSON: 'img/centos/packer.rcc.json'
 
-timeout : 28800s
+timeout : 43200s
