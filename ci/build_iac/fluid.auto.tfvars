@@ -36,5 +36,11 @@ builds = [{ branch="v3.0.x",
             project = "research-computing-cloud"
             description = "Research computing cluster (Ubuntu RCC v3.0)"
             packer_json = "img/ubuntu/packer.rcc.json"
+          },
+          { branch="v3.0.0-alpha",
+            img_family="rcc-debian-10-v300-alpha"
+            project = "fluid-cluster-ops"
+            description = "alpha Research computing cluster (Debian Marketplace v3.0)"
+            packer_json = "img/debian/packer.marketplace.json"
           }
          ]
