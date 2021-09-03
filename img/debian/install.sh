@@ -4,10 +4,10 @@
 function system_deps(){
 
     export DEBIAN_FRONTEND=noninteractive
-    dpkg  --configure -a
     rm /var/lib/dpkg/lock
     rm /var/lib/apt/lists/lock
     rm /var/cache/apt/archives/lock
+    dpkg  --configure -a
     apt-get update -y 
     apt-get install -y libnuma-dev python3-dev python3-pip build-essential zip unzip
     pip3 install --upgrade google-cloud-storage google-api-python-client oauth2client google-cloud \
