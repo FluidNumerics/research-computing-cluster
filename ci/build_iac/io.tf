@@ -2,6 +2,7 @@
 
 variable "builds" {
   type = list(object({
+    name = string
     branch = string
     img_family = string
     project = string

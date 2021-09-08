@@ -8,23 +8,31 @@ terraform {
 provider "google" {
 }
 
+locals {
+  bld_img_family = {for bld in var.builds : bld.name => bld.img_family}
+  bld_branch = {for bld in var.builds : bld.name => bld.branch}
+  bld_project = {for bld in var.builds : bld.name => bld.project}
+  bld_description = {for bld in var.builds : bld.name => bld.description}
+  bld_packer_json = {for bld in var.builds : bld.name => bld.packer_json}
+}
+
 resource "google_cloudbuild_trigger" "rcc_cluster" {
-  count = length(var.builds)
-  name = "RCC-Cluster-${var.builds[count.index].img_family}"
-  project = var.builds[count.index].project
-  description = var.builds[count.index].description
+  for_each = local.bld_img_family
+  name = each.key
+  project = local.bld_project[each.key]
+  description = local.bld_description[each.key]
   github {
     owner = "FluidNumerics"
     name = "research-computing-cluster"
     push {
-      branch = var.builds[count.index].branch
+      branch = local.bld_branch[each.key]
     }
   }
   substitutions = {
     _ZONE = var.zone
     _SUBNETWORK = var.subnet
-    _IMAGE_FAMILY = var.builds[count.index].img_family
-    _PACKER_JSON = var.builds[count.index].packer_json
+    _IMAGE_FAMILY = each.value
+    _PACKER_JSON = local.bld_packer_json[each.key]
   }
   filename = "ci/cloudbuild.yaml"
 }
