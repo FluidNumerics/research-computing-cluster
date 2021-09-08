@@ -11,7 +11,7 @@ steps:
         "-force",
         "-var","project_id=$PROJECT_ID",
         "-var","zone=$_ZONE",
-        "-var","image_name=${_IMAGE_FAMILY}${SHORT_SHA}",
+        "-var","image_name=${_IMAGE_FAMILY}-${SHORT_SHA}",
         "-var","image_family=${_IMAGE_FAMILY}",
         "-var","install_root=${_INSTALL_ROOT}",
         "-var","subnet=${_SUBNETWORK}",

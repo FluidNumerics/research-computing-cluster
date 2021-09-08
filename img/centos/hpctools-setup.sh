@@ -20,25 +20,5 @@ spack gc -y
 spack module lmod refresh --delete-tree -y
 
 
-# Benchmarks
-#
-#   hpcc - installs HPL, DGEMM, STREAM
-#
-COMPILERS=("gcc@11.2.0"
-           "gcc@10.3.0"
-           "gcc@9.4.0"
-           "clang"
-	   "intel")
-for COMPILER in "${COMPILERS[@]}"; do
-  spack install hpcc % ${COMPILER} target=x86_64
-  spack install hpcc % ${COMPILER} target=cascadelake
-  spack install hpcc % ${COMPILER} target=zen3
 
-  spack install hpcg % ${COMPILER} target=x86_64
-  spack install hpcg % ${COMPILER} target=cascadelake
-  spack install hpcg % ${COMPILER} target=zen3
-
-  spack install osu-micro-benchmarks % ${COMPILER} target=x86_64
-
-done
 

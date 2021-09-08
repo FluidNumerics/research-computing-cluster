@@ -5,7 +5,9 @@
     "image_family": "fluid-slurm-gcp-centos-7",
     "install_root": "/opt",
     "zone": "us-central1-c",
-    "subnet": "default"
+    "subnet": "default",
+    "target_arch": "x86_64",
+    "compiler": "gcc@10.4.0"
   },
   "builders": [{
     "type": "googlecompute",
@@ -17,9 +19,9 @@
     "zone": "{{user `zone`}}",
     "subnetwork" :"{{user `subnet`}}",
     "image_family": "{{user `image_family`}}",
-    "image_name": "{{user `image_name`}}",
     "image_licenses": ["projects/fluid-cluster-ops/global/licenses/fluid-slurm-gcp"],
-    "instance_name":"rcc-centos-{{timestamp}}",
+    "image_name": "{{user `image_name`}}",
+    "instance_name":"fluid-slurm-gcp-{{timestamp}}",
     "tags":["cloudbuild"],
     "scopes":["https://www.googleapis.com/auth/cloud-platform"],
     "ssh_username": "packer",
@@ -44,37 +46,42 @@
     {
       "type": "shell",
       "environment_vars": ["INSTALL_ROOT={{user `install_root`}}",
-                           "ARCH=x86_64"],
+                           "ARCH={{user `target_arch`}}",
+                           "COMPILER={{user `compiler`}}"],
       "execute_command": "chmod +x {{ .Path }}; {{ .Vars }} sudo -E bash '{{ .Path }}'",
       "script": "img/centos/install.sh"
     },
     {
       "type": "shell",
       "environment_vars": ["INSTALL_ROOT={{user `install_root`}}",
-                           "ARCH=x86_64"],
+	                   "ARCH={{user `target_arch`}}",
+                           "COMPILER={{user `compiler`}}"],
       "execute_command": "chmod +x {{ .Path }}; {{ .Vars }} sudo -E bash '{{ .Path }}'",
       "script": "img/common/spack-setup.sh"
     },
     {
       "type": "shell",
       "environment_vars": ["INSTALL_ROOT={{user `install_root`}}",
-                           "ARCH=x86_64"],
+	                   "ARCH={{user `target_arch`}}",
+                           "COMPILER={{user `compiler`}}"],
       "execute_command": "chmod +x {{ .Path }}; {{ .Vars }} sudo -E bash '{{ .Path }}'",
       "script": "img/common/fluid-cicb-setup.sh"
     },
     {
       "type": "shell",
       "environment_vars": ["INSTALL_ROOT={{user `install_root`}}",
-                           "ARCH=x86_64"],
+	                   "ARCH={{user `target_arch`}}",
+                           "COMPILER={{user `compiler`}}"],
       "execute_command": "chmod +x {{ .Path }}; {{ .Vars }} sudo -E bash '{{ .Path }}'",
-      "script": "img/common/dmtcp-setup.sh"
+      "script": "img/centos/compiler-setup.sh"
     },
     {
       "type": "shell",
       "environment_vars": ["INSTALL_ROOT={{user `install_root`}}",
-                           "ARCH=x86_64"],
+	                   "ARCH={{user `target_arch`}}",
+                           "COMPILER={{user `compiler`}}"],
       "execute_command": "chmod +x {{ .Path }}; {{ .Vars }} sudo -E bash '{{ .Path }}'",
-      "script": "img/centos/compiler-setup.sh"
+      "script": "img/centos/hpctools-setup.sh"
     },
     {
       "type": "shell",
