@@ -8,6 +8,7 @@ variable "builds" {
     project = string
     description = string
     packer_json = string
+    disabled = bool
   }))
   description = "List of branch build triggers"
 }

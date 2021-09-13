@@ -14,6 +14,7 @@ locals {
   bld_project = {for bld in var.builds : bld.name => bld.project}
   bld_description = {for bld in var.builds : bld.name => bld.description}
   bld_packer_json = {for bld in var.builds : bld.name => bld.packer_json}
+  bld_disabled = {for bld in var.builds : bld.name => bld.disabled}
 }
 
 resource "google_cloudbuild_trigger" "rcc_cluster" {
@@ -21,6 +22,7 @@ resource "google_cloudbuild_trigger" "rcc_cluster" {
   name = each.key
   project = local.bld_project[each.key]
   description = local.bld_description[each.key]
+  disabled = local.bld_disabled[each.key]
   github {
     owner = "FluidNumerics"
     name = "research-computing-cluster"
