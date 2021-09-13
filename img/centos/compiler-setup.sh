@@ -5,6 +5,15 @@
 #
 # //////////////////////////////////////////////////////////////// #
 
+spack_install() {
+  # This function attempts to install from the cache. If this fails, 
+  # then it will install from source and create a buildcache for this package
+  spack install --cache-only $1 || \
+	  ( spack install "$1" && \
+	  spack buildcache create --rebuild-index \
+	                          -k ${INSTALL_ROOT}/spack/share/RCC_gpg \
+				  -m RCC "$1" )
+}
 
 source ${INSTALL_ROOT}/spack/share/spack/setup-env.sh
 
@@ -16,7 +25,8 @@ COMPILERS=("gcc@11.2.0"
 	   "intel-oneapi-compilers@2021.3.0")
 
 for COMPILER in "${COMPILERS[@]}"; do
-  spack install ${COMPILER} % gcc@4.8.5 target=${ARCH}
+  spack_install "${COMPILER} % gcc@4.8.5 target=${ARCH}"
+#  spack install ${COMPILER} % gcc@4.8.5 target=${ARCH}
   spack load ${COMPILER} && spack compiler find --scope site && spack unload ${COMPILER}
 done
 
@@ -36,11 +46,13 @@ COMPILERS=("gcc@11.2.0"
 	   "intel")
 for COMPILER in "${COMPILERS[@]}"; do
   if [[ "$COMPILER" == *"intel"* ]];then
-    spack install openmpi@4.0.5 % intel target=${ARCH}
+  #  spack install openmpi@4.0.5 % intel target=${ARCH}
+    spack_install "openmpi@4.0.5 % intel target=${ARCH}"
   else
-    spack install openmpi@4.0.5 % ${COMPILER} target=${ARCH}
+  #  spack install openmpi@4.0.5 % ${COMPILER} target=${ARCH}
+    spack_install "openmpi@4.0.5 % ${COMPILER} target=${ARCH}"
   fi
 done
 
 spack gc -y
-spack module lmod refresh --delete-tree -y
+#spack module lmod refresh --delete-tree -y
