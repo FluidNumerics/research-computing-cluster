@@ -17,7 +17,7 @@ echo ". \${SPACK_ROOT}/share/spack/setup-env.sh" >> /etc/profile.d/z10_spack_env
 
 source ${INSTALL_ROOT}/spack/share/spack/setup-env.sh
 # Adjust config so that spack install paths are padded to allow for relocation
-spack config add "config:install_tree:padded_length:128"
+#spack config add "config:install_tree:padded_length:128"
 
 if [[ -f "/tmp/packages.yaml" ]]; then
   mv /tmp/packages.yaml ${INSTALL_ROOT}/spack/etc/spack/packages.yaml
