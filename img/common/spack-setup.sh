@@ -39,6 +39,5 @@ fi
 # Add spack mirror #
 spack gpg init
 spack mirror add RCC gs://rcc-spack-cache
-spack gpg create ${INSTALL_ROOT}/spack/share/RCC_gpg support@fluidnumerics.com
-#spack buildcache keys --install --trust
+spack buildcache keys --install --trust || spack gpg create ${INSTALL_ROOT}/spack/share/RCC_gpg support@fluidnumerics.com
 # ---------------- #

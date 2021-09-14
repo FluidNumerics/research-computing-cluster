@@ -9,10 +9,10 @@ spack_install() {
   # This function attempts to install from the cache. If this fails, 
   # then it will install from source and create a buildcache for this package
   spack buildcache install "$1" || \
-	  ( spack install "$1" && \
-	  spack buildcache create --rebuild-index \
-	                          -k ${INSTALL_ROOT}/spack/share/RCC_gpg \
-				  -m RCC "$1" )
+	  ( spack install --no-cache "$1" && \
+	    spack buildcache create -a --rebuild-index \
+	                            -k ${INSTALL_ROOT}/spack/share/RCC_gpg \
+				    -m RCC "$1" )
 }
 
 source ${INSTALL_ROOT}/spack/share/spack/setup-env.sh
