@@ -8,7 +8,7 @@ builds = [
             project = "research-computing-cloud"
             description = "Research computing cluster (CentOS RCC v3.0)"
             packer_json = "img/centos/packer.rcc.json"
-            disabled = false
+            disabled = true
           },
           { name="RCC-Debian-10-v3-rcc",
             branch="v3.0.x",
