@@ -40,6 +40,14 @@ builds = [
             project = "fluid-cluster-ops"
             description = "alpha Research computing cluster (CentOS Marketplace v3.0)"
             packer_json = "img/centos/packer.marketplace.json"
+            disabled = true
+          },
+          { branch="v3.0.0-alpha",
+            name="RCC-Centos-7-v300-alpha-rcc",
+            img_family="rcc-centos-7-v300-alpha"
+            project = "research-computing-cloud"
+            description = "alpha Research computing cluster (CentOS Marketplace v3.0)"
+            packer_json = "img/centos/packer.rcc.json"
             disabled = false
           }
          ]
