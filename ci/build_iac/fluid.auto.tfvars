@@ -39,7 +39,7 @@ builds = [
             img_family="rcc-centos-7-v300-alpha"
             project = "fluid-cluster-ops"
             description = "alpha Research computing cluster (CentOS Marketplace v3.0)"
-            packer_json = "img/debian/packer.marketplace.json"
+            packer_json = "img/centos/packer.marketplace.json"
             disabled = false
           }
          ]
