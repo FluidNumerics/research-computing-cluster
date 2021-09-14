@@ -16,7 +16,7 @@ builds = [
             project = "research-computing-cloud"
             description = "Research computing cluster (Debian RCC v3.0)"
             packer_json = "img/debian/packer.rcc.json"
-            disabled = false
+            disabled = true
           },
           { branch="v3.0.x",
             name="RCC-Ubuntu-2004-v3-rcc",
@@ -24,7 +24,7 @@ builds = [
             project = "research-computing-cloud"
             description = "Research computing cluster (Ubuntu RCC v3.0)"
             packer_json = "img/ubuntu/packer.rcc.json"
-            disabled = false
+            disabled = true
           },
           { branch="v3.0.0-alpha",
             name="RCC-Debian-10-v300-alpha-fco",
