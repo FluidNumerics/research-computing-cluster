@@ -12,7 +12,8 @@ spack_install() {
 	  ( spack install --no-cache "$1" && \
 	    spack buildcache create -a --rebuild-index \
 	                            -k ${INSTALL_ROOT}/spack/share/RCC_gpg \
-				    -m RCC "$1" )
+				    -m RCC 
+				    -f "$1" )
 }
 
 source ${INSTALL_ROOT}/spack/share/spack/setup-env.sh
