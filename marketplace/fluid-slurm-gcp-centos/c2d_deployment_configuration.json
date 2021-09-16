@@ -1,7 +1,0 @@
-{
-  "defaultDeploymentType": "MULTI_VM",
-  "imageName": "fluid-slurm-gcp-login-centos-v2-6",
-  "projectId": "fluid-cluster-ops",
-  "templateName": "nonexistent_template",
-  "useSolutionPackage": true
-}
