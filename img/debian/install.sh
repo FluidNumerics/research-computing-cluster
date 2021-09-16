@@ -15,6 +15,9 @@ function system_deps(){
 }
 
 function cluster_services_setup(){
+
+    gcloud source repos clone cluster-services --project=fluid-cluster-ops /tmp/cluster-services
+
     mkdir -p ${INSTALL_ROOT}/cls/build
     mkdir -p ${INSTALL_ROOT}/cls/bin
     mkdir -p ${INSTALL_ROOT}/cls/etc

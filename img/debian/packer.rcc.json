@@ -36,11 +36,6 @@
       "destination": "/tmp/"
     },
     {
-      "type": "file",
-      "source": "cluster-services",
-      "destination": "/tmp/"
-    },
-    {
       "type": "shell",
       "environment_vars": ["INSTALL_ROOT={{user `install_root`}}",
                            "ARCH=x86_64"],

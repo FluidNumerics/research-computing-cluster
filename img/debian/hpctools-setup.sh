@@ -18,18 +18,3 @@ spack install intel-oneapi-vtune@2021.6.0 target=${ARCH}
 
 spack gc -y
 spack module lmod refresh --delete-tree -y
-
-
-# Benchmarks
-#
-#   hpcc - installs HPL, DGEMM, STREAM
-#
-spack install hpcc target=x86_64
-spack install hpcc target=cascadelake
-spack install hpcc target=zen3
-
-spack install hpcg target=x86_64
-spack install hpcg target=cascadelake
-spack install hpcg target=zen3
-
-spack install osu-micro-benchmarks target=x86_64

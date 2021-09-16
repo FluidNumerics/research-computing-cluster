@@ -6,7 +6,7 @@ steps:
         "-force",
         "-var","project_id=$PROJECT_ID",
         "-var","zone=$_ZONE",
-        "-var","image_name=${_IMAGE_FAMILY}-${SHORT_SHA}",
+        "-var","image_name=${_IMAGE_FAMILY}-${TAG_NAME}",
         "-var","image_family=${_IMAGE_FAMILY}",
         "-var","install_root=${_INSTALL_ROOT}",
         "-var","subnet=${_SUBNETWORK}",
@@ -15,9 +15,9 @@ steps:
 
 substitutions:
     _ZONE: 'us-central1-c'
-    _IMAGE_FAMILY: 'rcc-foss'
+    _IMAGE_FAMILY: 'rcc-centos-7'
     _SUBNETWORK: 'default'
     _INSTALL_ROOT: '/opt'
-    _PACKER_JSON: 'img/foss/packer.rcc.json'
+    _PACKER_JSON: 'img/centos/packer.rcc.json'
 
 timeout : 43200s
