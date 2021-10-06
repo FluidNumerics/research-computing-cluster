@@ -1,8 +1,8 @@
 {
   "variables": {
     "project_id": "fluid-cluster-ops",
-    "image_name": "fluid-slurm-gcp-centos-7-latest",
-    "image_family": "fluid-slurm-gcp-centos-7",
+    "image_name": "rcc-centos-dev",
+    "image_family": "rcc-centos-dev",
     "install_root": "/opt",
     "zone": "us-central1-c",
     "subnet": "default",
@@ -12,7 +12,7 @@
   "builders": [{
     "type": "googlecompute",
     "project_id": "{{user `project_id`}}",
-    "source_image_family": "schedmd-slurm-20-11-7-centos-7",
+    "source_image_family": "rcc-centos-foss",
     "source_image_project_id": "research-computing-cloud",
     "machine_type": "n1-standard-16",
     "disk_size": 50,
@@ -53,22 +53,6 @@
                            "COMPILER={{user `compiler`}}"],
       "execute_command": "chmod +x {{ .Path }}; {{ .Vars }} sudo -E bash '{{ .Path }}'",
       "script": "img/common/spack-setup.sh"
-    },
-    {
-      "type": "shell",
-      "environment_vars": ["INSTALL_ROOT={{user `install_root`}}",
-	                   "ARCH={{user `target_arch`}}",
-                           "COMPILER={{user `compiler`}}"],
-      "execute_command": "chmod +x {{ .Path }}; {{ .Vars }} sudo -E bash '{{ .Path }}'",
-      "script": "img/common/fluid-cicb-setup.sh"
-    },
-    {
-      "type": "shell",
-      "environment_vars": ["INSTALL_ROOT={{user `install_root`}}",
-	                   "ARCH={{user `target_arch`}}",
-                           "COMPILER={{user `compiler`}}"],
-      "execute_command": "chmod +x {{ .Path }}; {{ .Vars }} sudo -E bash '{{ .Path }}'",
-      "script": "img/centos/compiler-setup.sh"
     },
     {
       "type": "shell",

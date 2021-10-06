@@ -1,11 +1,18 @@
 #!/bin/bash
 
-
-function system_deps(){
-
-    yum install -y gcc gcc-c++ gcc-gfortran valgrind valgrind-devel mailx python3 python3-devel python3-pip
-    pip3 install --upgrade google-cloud-storage google-api-python-client oauth2client google-cloud \
-    	               cython pyyaml parse docopt jsonschema dictdiffer
+spack_install() {
+  # This function attempts to install from the cache. If this fails, 
+  # then it will install from source and create a buildcache for this package
+  if [[ -n "$SPACK_BUCKET" ]]; then
+    spack buildcache install "$1" || \
+  	  ( spack install --no-cache "$1" && \
+  	    spack buildcache create -a --rebuild-index \
+  	                            -k ${INSTALL_ROOT}/spack/share/RCC_gpg \
+				    -m RCC \
+				    -f "$1" )
+  else
+     spack install "$1"
+  fi
 }
 
 function cluster_services_setup(){
@@ -16,8 +23,6 @@ function cluster_services_setup(){
     mkdir -p ${INSTALL_ROOT}/cls/bin
     mkdir -p ${INSTALL_ROOT}/cls/etc
     mkdir -p ${INSTALL_ROOT}/cls/log
-    
-    
     
     cp /tmp/cluster-services/src/cluster-config.schema.json ${INSTALL_ROOT}/cls/etc/
     cp /tmp/cluster-services/src/cluster_services.py ${INSTALL_ROOT}/cls/build/
@@ -37,45 +42,19 @@ function cluster_services_setup(){
     echo "export PATH=\${PATH}:${INSTALL_ROOT}/cls/bin" >> /etc/profile.d/z11_cls.sh
 }
 
-function rocm_setup(){
-    cat > /etc/yum.repos.d/rocm.repo <<EOL
-[ROCm]
-name=ROCm
-baseurl=https://repo.radeon.com/rocm/yum/rpm
-enabled=1
-gpgcheck=1
-gpgkey=https://repo.radeon.com/rocm/rocm.gpg.key
-EOL
-    yum update -y
-    yum install -y rocm-dev
-
-    cat > /etc/profile.d/z11_rocm.sh <<EOL
-#!/bin/bash
-
-export PATH=\${PATH}:/opt/rocm/bin
-export LD_LIBRARY_PATH=\${LD_LIBRARY_PATH}:/opt/rocm/lib:/opt/rocm/lib64
-EOL
-}
-
-#function parallel_studio_setup(){
-#    cat > /etc/yum.repos.d/intel-psxe-runtime-2018.repo <<EOL
-#[intel-psxe-runtime-2018]
-#name=Intel(R) Parallel Studio XE 2018 Runtime
-#baseurl=https://yum.repos.intel.com/2018
-#enabled=1
-#gpgcheck=1
-#gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-intel-psxe-runtime-2018
-#EOL
-#   
-#    rpm --import https://yum.repos.intel.com/2018/setup/RPM-GPG-KEY-intel-psxe-runtime-2018
-#    yum update -y
-#    yum install -y intel-psxe-runtime
-#}
-
-system_deps
-
 cluster_services_setup
 
-rocm_setup
+# Checkpoint/Restart tools
+spack_install "dmtcp % gcc@4.8.5 target=${ARCH}"
 
-#parallel_studio_setup
+# Profilers
+spack_install "hpctoolkit@2021.05.15 +cuda~viewer % gcc@10.3.0 target=${ARCH}"  # HPC Toolkit requires gcc 7 or above
+#spack_install "intel-oneapi-vtune@2021.6.0 % gcc@4.8.5 target=${ARCH}"
+
+spack gc -y
+
+if [[ -n "$SPACK_BUCKET" ]]; then
+    spack mirror rm RCC
+fi
+
+cat /dev/null > /var/log/messages

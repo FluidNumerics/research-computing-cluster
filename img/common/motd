@@ -6,17 +6,6 @@
 
   This solution contains free and open-source software. 
 
-  > Fluid-Slurm-GCP is a customized and supported fork of 
-
-           https://github.com/schedmd/slurm-gcp
-
-    which licensed under the Apache 2.0 License from SchedMD.
-
-    Source code for our fork can be found at
-
-           https://github.com/fluidnumerics/slurm-gcp
-  
-
   > Package management for HPC packages is managed by Spack
 
                     https://spack.io
@@ -43,7 +32,6 @@
   Before using this solution, review the RCC EULA at
 
            https://help.fluidnumerics.com/research-computing-cloud/eula
-
 
   You can obtain support by writing to support@fluidnumerics.com
 
