@@ -3,6 +3,7 @@
 spack_install() {
   # This function attempts to install from the cache. If this fails, 
   # then it will install from source and create a buildcache for this package
+  source /etc/profile.d/z10_spack_environment.sh 
   if [[ -n "$SPACK_BUCKET" ]]; then
     spack buildcache install "$1" || \
   	  ( spack install --no-cache "$1" && \
