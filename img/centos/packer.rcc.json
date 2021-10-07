@@ -34,7 +34,7 @@
     },
     {
       "type": "file",
-      "source": "img/centos/packages.yaml",
+      "source": "cluster-services",
       "destination": "/tmp/"
     },
     {

@@ -1,5 +1,9 @@
 steps:
 
+- id: Clone Cluster Services
+  name: gcr.io/cloud-builders/gcloud
+  args: ["source", "repos", "clone", "cluster-services", "--project=fluid-cluster-ops"]
+
 - id: Build Image
   name: 'hashicorp/packer:latest'
   args: ["build",

@@ -34,17 +34,13 @@
       "destination": "/tmp/"
     },
     {
-      "type": "file",
-      "source": "img/centos/packages.yaml",
-      "destination": "/tmp/"
+      "type": "shell",
+      "inline":[ "sudo mv /tmp/motd /etc/motd"]
     },
     {
-      "type": "shell",
-      "environment_vars": ["INSTALL_ROOT={{user `install_root`}}",
-                           "ARCH={{user `target_arch`}}",
-                           "COMPILER={{user `compiler`}}"],
-      "execute_command": "chmod +x {{ .Path }}; {{ .Vars }} sudo -E bash '{{ .Path }}'",
-      "script": "img/centos/install.sh"
+      "type": "file",
+      "source": "cluster-services",
+      "destination": "/tmp/"
     },
     {
       "type": "shell",
@@ -57,20 +53,10 @@
     {
       "type": "shell",
       "environment_vars": ["INSTALL_ROOT={{user `install_root`}}",
-	                   "ARCH={{user `target_arch`}}",
+                           "ARCH={{user `target_arch`}}",
                            "COMPILER={{user `compiler`}}"],
       "execute_command": "chmod +x {{ .Path }}; {{ .Vars }} sudo -E bash '{{ .Path }}'",
-      "script": "img/centos/hpctools-setup.sh"
-    },
-    {
-      "type": "shell",
-      "inline":[ "sudo mv /tmp/motd /etc/motd"]
-    },
-    {
-      "type": "shell",
-      "execute_command": "chmod +x {{ .Path }}; {{ .Vars }} sudo -E bash '{{ .Path }}'",
-      "script": "img/centos/clear-messages.sh"
+      "script": "img/centos/install.sh"
     }
   ]  
 }
-
