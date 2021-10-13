@@ -6,7 +6,7 @@
 
   This solution contains free and open-source software. 
 
-  > Package management for HPC packages is managed by Spack
+  > Package management for packages is managed by Spack
 
                     https://spack.io
 
@@ -31,9 +31,9 @@
 
   Before using this solution, review the RCC EULA at
 
-           https://help.fluidnumerics.com/research-computing-cloud/eula
+  https://help.fluidnumerics.com/research-computing-cloud/eula
 
-  You can obtain support by writing to support@fluidnumerics.com
+  You can obtain basic support by writing to support@fluidnumerics.com
 
 <><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><
 -----------------------------------------------------------------------
