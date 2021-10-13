@@ -29,10 +29,7 @@ function cluster_services_setup(){
 
     rm -r ${INSTALL_ROOT}/cls/build
     
-    
     chmod 700 ${INSTALL_ROOT}/cls/bin/cluster-services
-    
-    ln -s /slurm/scripts/config.yaml ${INSTALL_ROOT}/cls/etc/config.yaml
     
     echo "#!/bin/bash" > /etc/profile.d/z11_cls.sh
     echo "export PATH=\${PATH}:${INSTALL_ROOT}/cls/bin" >> /etc/profile.d/z11_cls.sh
