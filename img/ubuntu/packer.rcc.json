@@ -1,8 +1,8 @@
 {
   "variables": {
     "project_id": "fluid-cluster-ops",
-    "image_name": "fluid-slurm-gcp-ubuntu-7-latest",
-    "image_family": "fluid-slurm-gcp-ubuntu-7",
+    "image_name": "fluid-slurm-gcp-ubuntu-2004-latest",
+    "image_family": "fluid-slurm-gcp-ubuntu-2004",
     "install_root": "/opt",
     "zone": "us-central1-c",
     "subnet": "default"
@@ -10,7 +10,7 @@
   "builders": [{
     "type": "googlecompute",
     "project_id": "{{user `project_id`}}",
-    "source_image_family": "schedmd-slurm-20-11-7-ubuntu-2004",
+    "source_image_family": "rcc-ubuntu-foss",
     "source_image_project_id": "research-computing-cloud",
     "machine_type": "n1-standard-16",
     "disk_size": 50,
