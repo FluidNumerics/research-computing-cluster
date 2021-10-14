@@ -12,7 +12,7 @@
   "builders": [{
     "type": "googlecompute",
     "project_id": "{{user `project_id`}}",
-    "source_image_family": "rcc-centos-foss",
+    "source_image_family": "rcc-centos-foss-v300",
     "source_image_project_id": "research-computing-cloud",
     "machine_type": "n1-standard-16",
     "disk_size": 100,
