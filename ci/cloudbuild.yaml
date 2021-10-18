@@ -17,11 +17,15 @@ steps:
         "-var","zone=${_ZONE}",
         '${_PACKER_JSON}']
 
+# Test the image #
+# Use deployment manager to deploy the marketplace solution
+
 substitutions:
     _ZONE: 'us-central1-c'
-    _IMAGE_FAMILY: 'rcc-foss'
+    _IMAGE_FAMILY: 'rcc-centos'
     _SUBNETWORK: 'default'
     _INSTALL_ROOT: '/opt'
-    _PACKER_JSON: 'img/foss/packer.rcc.json'
+    _PACKER_JSON: 'img/centos/packer.rcc.json'
+    _MARKETPLACE_DM: 'marketplace/centos'
 
 timeout : 43200s
