@@ -47,6 +47,8 @@ locals {
   tag_packer_json = {for tag in var.tags : tag.name => tag.packer_json}
   tag_disabled = {for tag in var.tags : tag.name => tag.disabled}
   tag_config = {for tag in var.tags : tag.name => tag.config}
+  rcc_file = {for tag in var.tags : tag.name => tag.rcc_file}
+  dm_file = {for tag in var.tags : tag.name => tag.dm_file}
 }
 
 resource "google_cloudbuild_trigger" "tagged_builds" {
@@ -67,6 +69,8 @@ resource "google_cloudbuild_trigger" "tagged_builds" {
     _SUBNETWORK = var.subnet
     _IMAGE_FAMILY = each.value
     _PACKER_JSON = local.tag_packer_json[each.key]
+    _RCC_FILE = local.rcc_file[each.key]
+    _DM_FILE = local.dm_file[each.key]
   }
   filename = local.tag_config[each.key]
 }

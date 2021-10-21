@@ -17,6 +17,23 @@ steps:
         "-var","zone=${_ZONE}",
         '${_PACKER_JSON}']
 
+- id: Test DM Deployment
+  name: 'gcr.io/cloud-builders/gcloud'
+  entrypoint: 'sh'
+  args: 
+  - "-c"
+  - |
+       sed -i 's/<IMAGE_FAMILY>/${_IMAGE_FAMILY}/g' ${_RCC_FILE}
+       sed -i 's/<SHORT_SHA>/${SHORT_SHA}/g' ${_RCC_FILE}
+       gcloud deployment-manager deployments create dm-${BUILD_ID} --config=${_DM_FILE}
+
+- id: Delete DM Deployment
+  name: 'gcr.io/cloud-builders/gcloud'
+  args: ["deployment-manager",
+         "deployments delete", 
+         "dm-${BUILD_ID}",
+         "--config=${_DM_FILE}"]
+
 - id: Make Image Public
   name: 'gcr.io/cloud-builders/gcloud'
   args: ["compute",
@@ -33,5 +50,7 @@ substitutions:
     _SUBNETWORK: 'default'
     _INSTALL_ROOT: '/opt'
     _PACKER_JSON: 'img/centos/packer.rcc.json'
+    _DM_FILE: 'marketplace/centos/test_config.yaml'
+    _RCC_FILE: 'marketplace/centos/rcc-cluster.yaml'
 
 timeout : 43200s
