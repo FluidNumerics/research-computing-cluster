@@ -1,0 +1,37 @@
+steps:
+
+- id: Clone Cluster Services
+  name: gcr.io/cloud-builders/gcloud
+  args: ["source", "repos", "clone", "cluster-services", "--project=fluid-cluster-ops"]
+
+- id: Build Image
+  name: 'hashicorp/packer:latest'
+  args: ["build",
+        "-force",
+        "-var","project_id=$PROJECT_ID",
+        "-var","zone=$_ZONE",
+        "-var","image_name=${_IMAGE_FAMILY}-${SHORT_SHA}",
+        "-var","image_family=${_IMAGE_FAMILY}",
+        "-var","install_root=${_INSTALL_ROOT}",
+        "-var","subnet=${_SUBNETWORK}",
+        "-var","zone=${_ZONE}",
+        '${_PACKER_JSON}']
+
+- id: Make Image Public
+  name: 'gcr.io/cloud-builders/gcloud'
+  args: ["compute",
+         "images",
+         "add-iam-policy-binding",
+         "${IMAGE_FAMILY}-${SHORT_SHA}",
+         "--project=${PROJECT_ID}",
+         "--member='allAuthenticatedUsers'",
+         "--role='roles/compute.imageUser'"]
+
+substitutions:
+    _ZONE: 'us-central1-c'
+    _IMAGE_FAMILY: 'rcc-centos-7'
+    _SUBNETWORK: 'default'
+    _INSTALL_ROOT: '/opt'
+    _PACKER_JSON: 'img/centos/packer.rcc.json'
+
+timeout : 43200s

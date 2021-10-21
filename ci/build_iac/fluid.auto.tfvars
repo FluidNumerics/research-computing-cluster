@@ -27,7 +27,7 @@ tags = [
             description = "Research computing cluster (CentOS RCC v3.0)"
             packer_json = "img/centos/packer.marketplace.json"
             disabled = false
-            config = "ci/cloudbuild.tag.yaml"
+            config = "ci/cloudbuild.marketplace.yaml"
           },
           { prefix="v3.0.*",
             name="RCC-Debian-10-v30-release-fco",
@@ -36,7 +36,7 @@ tags = [
             description = "Research computing cluster (Debian RCC v3.0)"
             packer_json = "img/debian/packer.marketplace.json"
             disabled = false
-            config = "ci/cloudbuild.tag.yaml"
+            config = "ci/cloudbuild.marketplace.yaml"
           }
        ]
 
