@@ -35,7 +35,7 @@ tags = [
             project = "fluid-cluster-ops"
             description = "Research computing cluster (Debian RCC v3.0)"
             packer_json = "img/debian/packer.marketplace.json"
-            disabled = false
+            disabled = true
             config = "ci/cloudbuild.marketplace.yaml"
           }
        ]
