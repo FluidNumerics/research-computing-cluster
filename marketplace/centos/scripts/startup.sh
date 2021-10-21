@@ -42,3 +42,4 @@ fi
 echo "running python cluster setup script"
 chmod +x $DIR/$SETUP_SCRIPT
 $DIR/$SETUP_SCRIPT
+

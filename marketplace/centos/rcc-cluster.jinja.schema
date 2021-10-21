@@ -146,8 +146,8 @@ properties:
 
   controller_disk_size_gb:
     type        : integer
-    default     : 50
-    minimum     : 20
+    default     : 100
+    minimum     : 100
     maximum     : 2000
     description : Size of disk for the controller.
 
@@ -286,8 +286,8 @@ properties:
 
   login_disk_size_gb:
     type        : integer
-    default     : 20
-    minimum     : 20
+    default     : 100
+    minimum     : 100
     maximum     : 2000
     description : Size of disk for login node.
 
@@ -432,8 +432,8 @@ properties:
 
         compute_disk_size_gb:
           type        : integer
-          default     : 20
-          minimum     : 20
+          default     : 100
+          minimum     : 100
           maximum     : 2000
           description : Size of disk for compute nodes.
 
