@@ -1,9 +1,9 @@
 imports:
-- path: schedmd-slurm-gcp.jinja
+- path: rcc-centos.jinja
 
 resources:
-- name: schedmd-slurm-gcp
-  type: schedmd-slurm-gcp.jinja
+- name: rcc-centos
+  type: rcc-centos.jinja
   properties:
-    cluster_name: slurmtest
+    cluster_name: rcc-demo
     zone: us-central1-a

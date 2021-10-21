@@ -8,12 +8,12 @@ resources:
   properties:
     cluster_name: rcc
     zone: us-west1-b
-    controller_image: projects/fluid-cluster-ops/global/images/family/rcc-centos-v300
+    controller_image: projects/fluid-cluster-ops/global/images/rcc-centos-v300
     controller_machine_type: n1-standard-2
-    login_image: projects/fluid-cluster-ops/global/images/family/rcc-centos-v300
+    login_image: projects/fluid-cluster-ops/global/images/rcc-centos-v300
     login_machine_type: n1-standard-2
     compute_partition_name: nodes
-    compute_image: projects/fluid-cluster-ops/global/images/family/rcc-centos-v300
+    compute_image: projects/fluid-cluster-ops/global/images/rcc-centos-v300
     compute_image_hyperthreads: True
     compute_machine_type: n1-standard-2
     compute_max_node_count: 10
