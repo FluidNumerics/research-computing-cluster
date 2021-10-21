@@ -22,7 +22,7 @@ steps:
   args: ["compute",
          "images",
          "add-iam-policy-binding",
-         "${IMAGE_FAMILY}-${SHORT_SHA}",
+         "${_IMAGE_FAMILY}-${SHORT_SHA}",
          "--project=${PROJECT_ID}",
          "--member='allAuthenticatedUsers'",
          "--role='roles/compute.imageUser'"]
