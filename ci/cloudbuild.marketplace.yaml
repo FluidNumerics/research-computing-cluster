@@ -24,8 +24,8 @@ steps:
          "add-iam-policy-binding",
          "${_IMAGE_FAMILY}-${SHORT_SHA}",
          "--project=${PROJECT_ID}",
-         "--member='allAuthenticatedUsers'",
-         "--role='roles/compute.imageUser'"]
+         "--member=allAuthenticatedUsers",
+         "--role=roles/compute.imageUser"]
 
 substitutions:
     _ZONE: 'us-central1-c'
