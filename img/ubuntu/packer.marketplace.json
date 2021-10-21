@@ -13,7 +13,7 @@
     "source_image_family": "rcc-ubuntu-foss-v300",
     "source_image_project_id": "research-computing-cloud",
     "machine_type": "n1-standard-16",
-    "disk_size": 50,
+    "disk_size": 100,
     "zone": "{{user `zone`}}",
     "subnetwork" :"{{user `subnet`}}",
     "image_family": "{{user `image_family`}}",
