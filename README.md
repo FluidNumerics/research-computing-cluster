@@ -14,9 +14,9 @@ You can deploy an RCC cluster from Google Cloud Marketplace using any of the fol
 
 ## Terraform
 You can deploy an RCC cluster with Terraform using any of the following solutions
-* [RCC-CentOS (Terraform)](https://github.com/FluidNumerics/rcc-tf/tree/main/examples/rcc-centos)
-* [RCC-Debian (Terraform)](https://github.com/FluidNumerics/rcc-tf/tree/main/examples/rcc-debian)
-* [RCC-Ubuntu (Terraform)](https://github.com/FluidNumerics/rcc-tf/tree/main/examples/rcc-ubuntu)
+* [RCC-CentOS (Terraform)](./tf/rcc-centos)
+* [RCC-Debian (Terraform)](./tf/rcc-debian)
+* [RCC-Ubuntu (Terraform)](./tf/rcc-ubuntu)
 
 ## Documentation
-**If you are lookinging for RCC documentation**, go to https://research-computing-cluster.readthedocs.io
+**If you are looking for RCC documentation**, go to https://research-computing-cluster.readthedocs.io
