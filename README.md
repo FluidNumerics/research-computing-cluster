@@ -1,5 +1,8 @@
 # Research Computing Cluster
 
+[![Documentation Status](https://readthedocs.org/projects/research-computing-cluster/badge/?version=latest)](https://research-computing-cluster.readthedocs.io/en/latest/?badge=latest)
+
+
 This repository hosts resources for Fluid Numerics' RCC Marketplace products including image baking scripts, build and test pipelines, marketplace deployment scripts, and RCC documentation.
 
 **If you are interested in creating your own RCC images**, go to https://github.com/fluidnumerics/rcc-apps.
