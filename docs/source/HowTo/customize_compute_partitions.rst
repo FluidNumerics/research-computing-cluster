@@ -56,3 +56,18 @@ Partitions (synonymous with Slurm Partitions) consist of an array of machine-blo
 * :code:`max_time` - The maximum time, or wall clock limit, for jobs submitted to this partition.
 
  On RCC clusters, you are able to have multiple compute partitions, with each partition having multiple machine types. This level of composability allows you to meet various business and technical needs.
+
+===========
+Examples
+===========
+
+Add a new partition
+====================
+
+.. code-block:: shell
+
+    $ sudo su
+    $ cluster-services init
+    $ cluster-services list all > config.yaml
+
+Edit :code:`config.yaml`

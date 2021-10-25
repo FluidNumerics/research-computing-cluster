@@ -106,7 +106,7 @@ Your cluster organizes compute nodes into "partitions"; these are groupings of c
    :width: 800
    :alt: Configure the second partition
 
-If you plan on having more than one compute node type in your cluster, you can configure up to three partitions from the marketplace panel. After deployment, you can use :code:`cluster-services` to `add more compute partitions <../HowTo/customize-compute-partitions>`_. Alternatively, if you'd like to work with more partitions, you can use the `RCC Terraform deployments <https://github.com/FluidNumerics/research-computing-cluster/tree/main/tf>`_.
+If you plan on having more than one compute node type in your cluster, you can configure up to three partitions from the marketplace panel. After deployment, you can use :code:`cluster-services` to :doc:`add more compute partitions <../HowTo/customize_compute_partitions>`_. Alternatively, if you'd like to work with more partitions, you can use the `RCC Terraform deployments <https://github.com/FluidNumerics/research-computing-cluster/tree/main/tf>`_.
 
 *****************************************
 Next Steps
