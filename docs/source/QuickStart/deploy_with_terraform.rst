@@ -59,7 +59,7 @@ Set the following environment variables
 * :code:`RCC_MACHINE_TYPE` - The machine type to use for your first compute partition. In the next section of this tutorial, we'll cover how to add more partitions before deployment.
 * :code:`RCC_MAX_NODE` - The maximum number of nodes to support in the first compute partition.
 
-In the example below, we've configured a cluster named :code:`rcc` to be deployed in :code:`us-west1-b` with 10x:code:`c2-standard-8` compute nodes in the first partition.
+In the example below, we've configured a cluster named :code:`rcc` to be deployed in :code:`us-west1-b` with 10x :code:`c2-standard-8` compute nodes in the first partition.
 
 .. code-block:: shell
 
