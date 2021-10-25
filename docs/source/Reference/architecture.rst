@@ -6,7 +6,7 @@ RCC Architecture
 Overview
 ==========
 
-uThe Research Computing Cloud (RCC) Slurm Cluster is designed to replicate traditional on-premise HPC resources. It consists of a Slurm controller node, login nodes, compute nodes, and networking resources. Optionally, you can add NFS and Lustre file systems to the cluster to increase your storage capacity and file IO performance. 
+The Research Computing Cloud (RCC) Slurm Cluster is designed to replicate traditional on-premise HPC resources. It consists of a Slurm controller node, login nodes, compute nodes, and networking resources. Optionally, you can add NFS and Lustre file systems to the cluster to increase your storage capacity and file IO performance. 
 
 ========================
 Architecture Components
