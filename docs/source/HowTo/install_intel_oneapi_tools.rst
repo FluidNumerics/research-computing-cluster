@@ -11,3 +11,5 @@ Install Intel OneAPI Tools
 
 Once installed, these packages can be added to any users environment on your cluster using the :code:`spack load` command.
 
+
+Alternatively, you can `install Intel® OneAPI HPC Toolkit using the instructions on Intel®'s website <https://www.intel.com/content/www/us/en/developer/tools/oneapi/hpc-toolkit.html#gs.e0usub>`_.
