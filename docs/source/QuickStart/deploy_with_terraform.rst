@@ -30,7 +30,7 @@ To learn about pricing and licensing and features of the RCC solutions, you can 
 * `RCC-Debian (Debian 10) <https://console.cloud.google.com/marketplace/fluid-cluster-ops/rcc-debian>`_
 * `RCC-Ubuntu (Ubuntu 20.04) <https://console.cloud.google.com/marketplace/fluid-cluster-ops/rcc-ubuntu>`_
 
-We recommend that you `log into Google Cloud Shell <https://shell.cloud.google.com?show=terminal>`_, since Cloud Shell provides necessary authentication and command line tools, including Terraform, git, and the gcloud SDK. If you plan to use your own system, you will need to `install and initialize the gcloud SDK <https://cloud.google.com/sdk/docs/install>`_ and `Terraform <https://terraform.io>`.
+We recommend that you `log into Google Cloud Shell <https://shell.cloud.google.com?show=terminal>`_, since Cloud Shell provides necessary authentication and command line tools, including Terraform, git, and the gcloud SDK. If you plan to use your own system, you will need to `install and initialize the gcloud SDK <https://cloud.google.com/sdk/docs/install>`_ and `Terraform <https://terraform.io>`_.
 
 Next, clone the research-computing-cluster repository
 
