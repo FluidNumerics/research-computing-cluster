@@ -43,3 +43,6 @@ echo "running python cluster setup script"
 chmod +x $DIR/$SETUP_SCRIPT
 $DIR/$SETUP_SCRIPT
 
+if [[ $(hostname) == *"controller" ]]; then
+  /apps/cls/bin/cluster-services init
+fi

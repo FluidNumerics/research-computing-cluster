@@ -6,34 +6,84 @@ description:
   url: 'https://www.fluidnumerics.com/research-computing-cloud'
   version: 3.0.0
   tagline: Enabling functional research computing on Google Cloud
-  descriptionHtml: >
+  descriptionHtml: >-
     The Research Computing Cluster is an elastic, bare-metal style HPC cluster
     with the Slurm job scheduler and research computing software development
     toolchains. 
+
 
     The RCC comes with the Spack package manager for installing research
     computing applications in addition to a set of open-source licensed
     compilers (GCC and AOMP) with accompanying builds of OpenMPI and Singularity
     for deploying containerized applications.
 
+
     This solution integrates with external file systems, including Lustre and 
     Filestore which can provide additional high performance file IO for any
     research computing workload. Additionally, the RCC is compatible with the
     fluid-run continuous intergration/continuous benchmarking tool from Fluid
     Numerics, which enables research software engineers to configure 
-    application tests that run at scale through Google Cloud Build. 
+    application tests that run at scale through Google Cloud Build.
   logo: '@media/rcc-logo.png'
   icon: '@media/rcc-icon.png'
   documentations:
-    - title: Research Computing Cloud Documentation
-      url: 'https://research-computing-cloud.readthedocs.io'
+    - title: Deploy the RCC
+      url: >-
+        https://research-computing-cluster.readthedocs.io/en/latest/QuickStart/deploy_from_marketplace.html
+      destinations:
+        - DESTINATION_SOLUTION_DETAILS
+        - DESTINATION_CONFIGURATION
+    - title: How to Submit Jobs
+      url: >-
+        https://research-computing-cluster.readthedocs.io/en/latest/HowTo/submit_jobs.html
+      destinations:
+        - DESTINATION_SOLUTION_DETAILS
+        - DESTINATION_CONFIGURATION
+        - DESTINATION_POST_DEPLOY
+        - DESTINATION_SOLUTION_CALL_TO_ACTION
+    - title: Customize your Software Environment
+      url: >-
+        https://research-computing-cluster.readthedocs.io/en/latest/HowTo/customize_environment.html
+      destinations:
+        - DESTINATION_SOLUTION_DETAILS
+        - DESTINATION_CONFIGURATION
+        - DESTINATION_POST_DEPLOY
+        - DESTINATION_SOLUTION_CALL_TO_ACTION
+    - title: Install Spack Packages
+      url: >-
+        https://research-computing-cluster.readthedocs.io/en/latest/HowTo/customize_environment.html#install-packages-with-spack-user-environments
+      destinations:
+        - DESTINATION_SOLUTION_DETAILS
+        - DESTINATION_CONFIGURATION
+        - DESTINATION_POST_DEPLOY
+        - DESTINATION_SOLUTION_CALL_TO_ACTION
+    - title: Customize Compute Partitions
+      url: >-
+        https://research-computing-cluster.readthedocs.io/en/latest/HowTo/customize_compute_partitions.html
+      destinations:
+        - DESTINATION_SOLUTION_DETAILS
+        - DESTINATION_CONFIGURATION
+        - DESTINATION_POST_DEPLOY
+        - DESTINATION_SOLUTION_CALL_TO_ACTION
+    - title: Deploy Singularity Containers
+      url: >-
+        https://research-computing-cluster.readthedocs.io/en/latest/HowTo/run_a_singularity_container.html
       destinations:
         - DESTINATION_SOLUTION_DETAILS
         - DESTINATION_CONFIGURATION
         - DESTINATION_POST_DEPLOY
         - DESTINATION_SOLUTION_CALL_TO_ACTION
     - title: Fluid-Run for CI/CB with RCC
-      url: 'https://fluid-run.readthedocs.io'
+      url: >-
+        https://fluid-run.readthedocs.io/en/latest/QuickStart/rcc_ephemeral_tutorial.html
+      destinations:
+        - DESTINATION_SOLUTION_DETAILS
+        - DESTINATION_CONFIGURATION
+        - DESTINATION_POST_DEPLOY
+        - DESTINATION_SOLUTION_CALL_TO_ACTION
+    - title: Get Support
+      url: >-
+        https://research-computing-cluster.readthedocs.io/en/latest/Support/support.html
       destinations:
         - DESTINATION_SOLUTION_DETAILS
         - DESTINATION_CONFIGURATION
@@ -65,10 +115,17 @@ description:
           version: 4.0.5
   support:
     - title: Support
-      descriptionHtml: Some description
+      descriptionHtml: >-
+        The Fluid Numerics team has strong backgrounds in high performance,
+        scientific, and cloud computing, research software engineering, applied
+        mathematics, and physical sciences. Use of the RCC solutions entitles
+        you to support through Fluid Numerics' Help Desk and we encourage you to
+        reach out to us at any time at support@fluidnumerics.com. Fluid Numerics
+        offers a wide variety of services that all focus on accelerating your
+        time to science. Reach out today to learn how we can support your team!
       showSupportId: false
       url: 'https://www.fluidnumerics.com/'
-  eulaUrl: 'https://help.fluidnumerics.com/research-computing-cloud/eula'
+  eulaUrl: 'https://help.fluidnumerics.com/eula'
 input:
   sections:
     - name: NETWORK_TIER
