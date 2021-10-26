@@ -1,0 +1,393 @@
+metadataVersion: v1
+description:
+  title: RCC-Debian
+  author:
+    title: Fluid Numerics
+  url: 'https://www.fluidnumerics.com/research-computing-cloud'
+  version: 3.0.0
+  tagline: Enabling functional research computing on Google Cloud
+  descriptionHtml: >-
+    The Research Computing Cluster is an elastic, bare-metal style HPC cluster
+    with the Slurm job scheduler and research computing software development
+    toolchains. 
+
+
+    The RCC comes with the Spack package manager for installing research
+    computing applications in addition to a set of open-source licensed
+    compilers (GCC and AOMP) with accompanying builds of OpenMPI and Singularity
+    for deploying containerized applications.
+
+
+    This solution integrates with external file systems, including Lustre and 
+    Filestore which can provide additional high performance file IO for any
+    research computing workload. Additionally, the RCC is compatible with the
+    fluid-run continuous intergration/continuous benchmarking tool from Fluid
+    Numerics, which enables research software engineers to configure 
+    application tests that run at scale through Google Cloud Build.
+  logo: '@media/rcc-logo.png'
+  icon: '@media/rcc-icon.png'
+  documentations:
+    - title: Deploy the RCC
+      url: >-
+        https://research-computing-cluster.readthedocs.io/en/latest/QuickStart/deploy_from_marketplace.html
+      destinations:
+        - DESTINATION_SOLUTION_DETAILS
+        - DESTINATION_CONFIGURATION
+    - title: How to Submit Jobs
+      url: >-
+        https://research-computing-cluster.readthedocs.io/en/latest/HowTo/submit_jobs.html
+      destinations:
+        - DESTINATION_SOLUTION_DETAILS
+        - DESTINATION_CONFIGURATION
+        - DESTINATION_POST_DEPLOY
+        - DESTINATION_SOLUTION_CALL_TO_ACTION
+    - title: Customize your Software Environment
+      url: >-
+        https://research-computing-cluster.readthedocs.io/en/latest/HowTo/customize_environment.html
+      destinations:
+        - DESTINATION_SOLUTION_DETAILS
+        - DESTINATION_CONFIGURATION
+        - DESTINATION_POST_DEPLOY
+        - DESTINATION_SOLUTION_CALL_TO_ACTION
+    - title: Install Spack Packages
+      url: >-
+        https://research-computing-cluster.readthedocs.io/en/latest/HowTo/customize_environment.html#install-packages-with-spack-user-environments
+      destinations:
+        - DESTINATION_SOLUTION_DETAILS
+        - DESTINATION_CONFIGURATION
+        - DESTINATION_POST_DEPLOY
+        - DESTINATION_SOLUTION_CALL_TO_ACTION
+    - title: Customize Compute Partitions
+      url: >-
+        https://research-computing-cluster.readthedocs.io/en/latest/HowTo/customize_compute_partitions.html
+      destinations:
+        - DESTINATION_SOLUTION_DETAILS
+        - DESTINATION_CONFIGURATION
+        - DESTINATION_POST_DEPLOY
+        - DESTINATION_SOLUTION_CALL_TO_ACTION
+    - title: Deploy Singularity Containers
+      url: >-
+        https://research-computing-cluster.readthedocs.io/en/latest/HowTo/run_a_singularity_container.html
+      destinations:
+        - DESTINATION_SOLUTION_DETAILS
+        - DESTINATION_CONFIGURATION
+        - DESTINATION_POST_DEPLOY
+        - DESTINATION_SOLUTION_CALL_TO_ACTION
+    - title: Fluid-Run for CI/CB with RCC
+      url: >-
+        https://fluid-run.readthedocs.io/en/latest/QuickStart/rcc_ephemeral_tutorial.html
+      destinations:
+        - DESTINATION_SOLUTION_DETAILS
+        - DESTINATION_CONFIGURATION
+        - DESTINATION_POST_DEPLOY
+        - DESTINATION_SOLUTION_CALL_TO_ACTION
+    - title: Get Support
+      url: >-
+        https://research-computing-cluster.readthedocs.io/en/latest/Support/support.html
+      destinations:
+        - DESTINATION_SOLUTION_DETAILS
+        - DESTINATION_CONFIGURATION
+        - DESTINATION_POST_DEPLOY
+        - DESTINATION_SOLUTION_CALL_TO_ACTION
+  softwareGroups:
+    - type: SOFTWARE_GROUP_OS
+      software:
+        - title: Debian
+          version: '10'
+    - software:
+        - title: Slurm
+          version: 20.11.7
+    - software:
+        - title: Spack
+    - software:
+        - title: Singularity
+          version: 3.7.4
+    - software:
+        - title: GCC
+          version: 
+    - software:
+        - title: OpenMPI
+          version: 4.0.5
+  support:
+    - title: Support
+      descriptionHtml: >-
+        The Fluid Numerics team has strong backgrounds in high performance,
+        scientific, and cloud computing, research software engineering, applied
+        mathematics, and physical sciences. Use of the RCC solutions entitles
+        you to support through Fluid Numerics' Help Desk and we encourage you to
+        reach out to us at any time at support@fluidnumerics.com. Fluid Numerics
+        offers a wide variety of services that all focus on accelerating your
+        time to science. Reach out today to learn how we can support your team!
+      showSupportId: false
+      url: 'https://www.fluidnumerics.com/'
+  eulaUrl: 'https://help.fluidnumerics.com/eula'
+input:
+  sections:
+    - name: NETWORK_TIER
+      title: Network
+    - name: NETSTORE_TIER
+      title: Network Storage Mount
+    - name: CONTROLLER_TIER
+      title: Slurm Controller
+    - name: LOGIN_TIER
+      title: Slurm Login
+    - name: COMPUTE1_CONFIG
+      title: Slurm Compute Partition 1
+    - name: COMPUTE2_CONFIG
+      title: Slurm Compute Partition 2
+    - name: COMPUTE3_CONFIG
+      title: Slurm Compute Partition 3
+  properties:
+    - name: cluster_name
+      title: Cluster name
+      tooltip: 'Letters, numbers, and dashes only'
+    - name: zone
+      title: Zone
+      subtext: >-
+        GPU availability is limited to certain zones. <a
+        href="https://cloud.google.com/compute/docs/gpus">Learn more</a>
+    - name: suspend_time
+      title: Suspend Time (in sec)
+      level: 1
+    - name: network
+      title: Network name
+      section: NETWORK_TIER
+    - name: subnetwork
+      title: Subnetwork name
+      section: NETWORK_TIER
+    - name: controller_external_ip
+      title: Controller External IP
+      subtext: >-
+        Enable Private Google access or add a Cloud Router NAT on the target
+        subnetwork before disabling
+      section: NETWORK_TIER
+    - name: login_external_ip
+      title: Login External IP
+      section: NETWORK_TIER
+    - name: compute_external_ip
+      title: Compute Node External IPs
+      section: NETWORK_TIER
+    - name: netstore_enabled
+      title: Enable network storage mount
+      level: 1
+      section: NETSTORE_TIER
+    - name: netstore_server_ip
+      title: Server host/IP
+      level: 1
+      section: NETSTORE_TIER
+    - name: netstore_remote_mount
+      title: Remote mount path
+      level: 1
+      section: NETSTORE_TIER
+    - name: netstore_local_mount
+      title: Local mount path
+      level: 1
+      section: NETSTORE_TIER
+    - name: netstore_fs_type
+      title: Filesystem type
+      level: 1
+      section: NETSTORE_TIER
+    - name: netstore_mount_options
+      title: Mount options
+      level: 1
+      section: NETSTORE_TIER
+    - name: controller_machine_type
+      title: Controller Machine type
+      section: CONTROLLER_TIER
+    - name: controller_disk_type
+      title: Boot Disk Type
+      level: 1
+      section: CONTROLLER_TIER
+    - name: controller_disk_size_gb
+      title: Boot Disk Size (GB)
+      level: 1
+      section: CONTROLLER_TIER
+    - name: controller_access
+      title: Controller API Access
+      level: 1
+      section: CONTROLLER_TIER
+    - name: controller_custom_scopes
+      title: Controller Custom Scopes
+      level: 1
+      section: CONTROLLER_TIER
+    - name: login_machine_type
+      title: Login machine type
+      level: 1
+      section: LOGIN_TIER
+    - name: login_disk_type
+      title: Boot Disk Type
+      level: 1
+      section: LOGIN_TIER
+    - name: login_disk_size_gb
+      title: Boot Disk Size (GB)
+      level: 1
+      section: LOGIN_TIER
+    - name: login_access
+      title: Login API Access
+      level: 1
+      section: LOGIN_TIER
+    - name: login_custom_scopes
+      title: Login Custom Scopes
+      level: 1
+      section: LOGIN_TIER
+    - name: compute1_partition_name
+      title: Name for the Slurm compute partition
+      section: COMPUTE1_CONFIG
+    - name: compute1_max_node_count
+      title: Maximum Instance Count
+      tooltip: >-
+        Specify a value for the maximum number of compute nodes in this
+        partition
+      section: COMPUTE1_CONFIG
+    - name: compute1_static_node_count
+      title: Number of static nodes to create
+      section: COMPUTE1_CONFIG
+    - name: compute1_preemptible
+      title: Preemptible Instances
+      tooltip: >-
+        A preemptible VM costs much less, but lasts only 24 hours. It can be
+        terminated sooner due to system demands.
+      section: COMPUTE1_CONFIG
+    - name: compute1_machine_type
+      title: Machine type
+      section: COMPUTE1_CONFIG
+    - name: compute1_disk_type
+      title: Boot Disk Type
+      level: 1
+      section: COMPUTE1_CONFIG
+    - name: compute1_disk_size_gb
+      title: Boot Disk Size (GB)
+      level: 1
+      section: COMPUTE1_CONFIG
+    - name: compute1_gpu_count
+      title: GPU count
+      tooltip: Number of GPUs to attach to each compute node
+      level: 1
+      section: COMPUTE1_CONFIG
+    - name: compute1_gpu_type
+      title: GPU type
+      level: 1
+      section: COMPUTE1_CONFIG
+    - name: compute_node_access
+      title: Compute node API access
+      subtext: This applies to all compute partitions
+      level: 1
+      section: COMPUTE1_CONFIG
+    - name: compute_node_custom_scopes
+      title: Compute node custom scopes
+      level: 1
+      section: COMPUTE1_CONFIG
+    - name: compute2_enabled
+      title: Enable partition
+      section: COMPUTE2_CONFIG
+    - name: compute2_partition_name
+      title: Name for the Slurm compute partition
+      level: 1
+      section: COMPUTE2_CONFIG
+    - name: compute2_max_node_count
+      title: Maximum Instance Count
+      tooltip: Specify a value for the maximum amount of compute nodes.
+      level: 1
+      section: COMPUTE2_CONFIG
+    - name: compute2_static_node_count
+      title: Number of static nodes to create
+      level: 1
+      section: COMPUTE2_CONFIG
+    - name: compute2_preemptible
+      title: Preemptible Instances
+      tooltip: >-
+        A preemptible VM costs much less, but lasts only 24 hours. It can be
+        terminated sooner due to system demands.
+      level: 1
+      section: COMPUTE2_CONFIG
+    - name: compute2_machine_type
+      title: Machine type
+      level: 1
+      section: COMPUTE2_CONFIG
+    - name: compute2_disk_type
+      title: Boot Disk Type
+      level: 2
+      section: COMPUTE2_CONFIG
+    - name: compute2_disk_size_gb
+      title: Boot Disk Size (GB)
+      level: 2
+      section: COMPUTE2_CONFIG
+    - name: compute2_gpu_count
+      title: GPU count
+      tooltip: Number of GPUs to attach to each compute node
+      level: 2
+      section: COMPUTE2_CONFIG
+    - name: compute2_gpu_type
+      title: GPU type
+      level: 2
+      section: COMPUTE2_CONFIG
+    - name: compute3_enabled
+      title: Enable partition
+      section: COMPUTE3_CONFIG
+    - name: compute3_partition_name
+      title: Name for the Slurm compute partition
+      level: 1
+      section: COMPUTE3_CONFIG
+    - name: compute3_max_node_count
+      title: Maximum Instance Count
+      tooltip: Specify a value for the maximum amount of compute nodes.
+      level: 1
+      section: COMPUTE3_CONFIG
+    - name: compute3_static_node_count
+      title: Number of static nodes to create
+      level: 1
+      section: COMPUTE3_CONFIG
+    - name: compute3_preemptible
+      title: Preemptible Instances
+      tooltip: >-
+        A preemptible VM costs much less, but lasts only 24 hours. It can be
+        terminated sooner due to system demands.
+      level: 1
+      section: COMPUTE3_CONFIG
+    - name: compute3_machine_type
+      title: Machine type
+      level: 1
+      section: COMPUTE3_CONFIG
+    - name: compute3_disk_type
+      title: Boot Disk Type
+      level: 2
+      section: COMPUTE3_CONFIG
+    - name: compute3_disk_size_gb
+      title: Boot Disk Size (GB)
+      level: 2
+      section: COMPUTE3_CONFIG
+    - name: compute3_gpu_count
+      title: GPU count
+      tooltip: Number of GPUs to attach to each compute node
+      level: 2
+      section: COMPUTE3_CONFIG
+    - name: compute3_gpu_type
+      title: GPU type
+      level: 2
+      section: COMPUTE3_CONFIG
+runtime:
+  deployingMessage: Deployment can take several minutes to complete.
+  applicationTable:
+    rows:
+      - label: Cluster Zone
+        value: '{{ properties().zone }}'
+      - label: Login Node
+        value: '{{ outputs()["login-name"] }}'
+      - label: Login Address
+        value: '{{ externalIp(outputs()["login-link"]) }}'
+        showIf: '{{ properties().login_external_ip }}'
+      - label: Controller
+        value: '{{ outputs()["controller-name"] }}'
+      - label: Controller Address
+        value: '{{ externalIp(outputs()["controller-link"]) }}'
+  primaryButton:
+    type: TYPE_GCE_VM_SSH
+    label: SSH to RCC Login Node
+    action: '{{ outputs()["login-link"] }}'
+  suggestedActions:
+    - heading: List available packages
+      description: <code>$ spack find</code>
+    - heading: Summarize node status
+      description: <code>$ sinfo</code>
+annotations:
+  autogenSpecType: MULTI_VM

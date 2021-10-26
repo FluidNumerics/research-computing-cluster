@@ -1,0 +1,9 @@
+imports:
+- path: rcc-debian.jinja
+
+resources:
+- name: rcc-debian
+  type: rcc-debian.jinja
+  properties:
+    cluster_name: rcc-demo
+    zone: us-central1-a

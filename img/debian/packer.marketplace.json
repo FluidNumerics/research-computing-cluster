@@ -31,13 +31,13 @@
       "destination": "/tmp/"
     },
     {
-      "type": "file",
-      "source": "img/debian/packages.yaml",
-      "destination": "/tmp/"
-    },
-    {
       "type": "shell",
       "inline":[ "sudo mv /tmp/motd /etc/motd"]
+    },
+    {
+      "type": "file",
+      "source": "cluster-services",
+      "destination": "/tmp/"
     },
     {
       "type": "shell",
