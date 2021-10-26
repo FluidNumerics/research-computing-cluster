@@ -32,7 +32,8 @@ steps:
   args: ["deployment-manager",
          "deployments",
          "delete", 
-         "dm-${BUILD_ID}"]
+         "dm-${BUILD_ID}",
+         "--quiet"]
 
 - id: Make Image Public
   name: 'gcr.io/cloud-builders/gcloud'
