@@ -30,7 +30,8 @@ steps:
 - id: Delete DM Deployment
   name: 'gcr.io/cloud-builders/gcloud'
   args: ["deployment-manager",
-         "deployments delete", 
+         "deployments",
+         "delete", 
          "dm-${BUILD_ID}",
          "--config=${_DM_FILE}"]
 
