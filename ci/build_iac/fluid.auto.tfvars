@@ -10,7 +10,6 @@ tags = [
             packer_json = "img/centos/packer.marketplace.json"
             disabled = false
             config = "ci/cloudbuild.marketplace.yaml"
-            dm_file = "marketplace/centos/test_config.yaml"
             rcc_file = "marketplace/centos/rcc-cluster.yaml"
           },
           { prefix="v3.0.*",
@@ -21,7 +20,6 @@ tags = [
             packer_json = "img/debian/packer.marketplace.json"
             disabled = true
             config = "ci/cloudbuild.marketplace.yaml"
-            dm_file = "marketplace/debian/test_config.yaml"
             rcc_file = "marketplace/debian/rcc-cluster.yaml"
           }
        ]

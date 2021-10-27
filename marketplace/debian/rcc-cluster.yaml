@@ -1,10 +1,10 @@
 
 imports:
-  - path: rcc-debian.jinja
+  - path: rcc-cluster.jinja
 
 resources:
 - name: rcc
-  type: rcc-debian.jinja
+  type: rcc-cluster.jinja
   properties:
     cluster_name: rcc-debian
     zone: us-west1-b

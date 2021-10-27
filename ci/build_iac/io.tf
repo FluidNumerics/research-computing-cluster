@@ -23,7 +23,6 @@ variable "tags" {
     packer_json = string
     disabled = bool
     config = string
-    dm_file = string
     rcc_file = string
   }))
   description = "List of tagged build triggers"
