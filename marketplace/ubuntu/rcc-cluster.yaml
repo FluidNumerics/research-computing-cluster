@@ -1,0 +1,19 @@
+
+imports:
+  - path: rcc-cluster.jinja
+
+resources:
+- name: rcc
+  type: rcc-cluster.jinja
+  properties:
+    cluster_name: rcc-ubuntu
+    zone: us-west1-b
+    controller_image: projects/fluid-cluster-ops/global/images/<IMAGE_FAMILY>-<SHORT_SHA>
+    controller_machine_type: n1-standard-2
+    login_image: projects/fluid-cluster-ops/global/images/<IMAGE_FAMILY>-<SHORT_SHA>
+    login_machine_type: n1-standard-2
+    compute_partition_name: nodes
+    compute_image: projects/fluid-cluster-ops/global/images/<IMAGE_FAMILY>-<SHORT_SHA>
+    compute_image_hyperthreads: True
+    compute_machine_type: n1-standard-2
+    compute_max_node_count: 10

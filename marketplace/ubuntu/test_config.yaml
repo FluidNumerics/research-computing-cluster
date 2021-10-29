@@ -1,0 +1,9 @@
+imports:
+- path: rcc-ubuntu.jinja
+
+resources:
+- name: rcc-ubuntu
+  type: rcc-ubuntu.jinja
+  properties:
+    cluster_name: rcc-demo
+    zone: us-central1-a
