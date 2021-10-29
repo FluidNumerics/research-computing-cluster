@@ -8,7 +8,7 @@ tags = [
             project = "fluid-cluster-ops"
             description = "Research computing cluster (CentOS RCC v3.0)"
             packer_json = "img/centos/packer.marketplace.json"
-            disabled = false
+            disabled = true
             config = "ci/cloudbuild.marketplace.yaml"
             rcc_file = "marketplace/centos/rcc-cluster.yaml"
           },
@@ -21,6 +21,16 @@ tags = [
             disabled = true
             config = "ci/cloudbuild.marketplace.yaml"
             rcc_file = "marketplace/debian/rcc-cluster.yaml"
+          },
+          { prefix="v3.0.*",
+            name="RCC-Ubuntu-v30-release-fco",
+            img_family="rcc-ubuntu-2004-v300"
+            project = "fluid-cluster-ops"
+            description = "Research computing cluster (Ubuntu RCC v3.0)"
+            packer_json = "img/ubuntu/packer.marketplace.json"
+            disabled = false
+            config = "ci/cloudbuild.marketplace.yaml"
+            rcc_file = "marketplace/ubuntu/rcc-cluster.yaml"
           }
        ]
 
