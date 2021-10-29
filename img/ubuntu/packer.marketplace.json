@@ -32,16 +32,13 @@
       "destination": "/tmp/"
     },
     {
-      "type": "file",
-      "source": "img/ubuntu/packages.yaml",
-      "destination": "/tmp/"
+      "type": "shell",
+      "inline":[ "sudo mv /tmp/motd /etc/motd"]
     },
     {
-      "type": "shell",
-      "environment_vars": ["INSTALL_ROOT={{user `install_root`}}",
-                           "ARCH=x86_64"],
-      "execute_command": "chmod +x {{ .Path }}; {{ .Vars }} sudo -E bash '{{ .Path }}'",
-      "script": "img/ubuntu/install.sh"
+      "type": "file",
+      "source": "cluster-services",
+      "destination": "/tmp/"
     },
     {
       "type": "shell",
@@ -55,23 +52,7 @@
       "environment_vars": ["INSTALL_ROOT={{user `install_root`}}",
                            "ARCH=x86_64"],
       "execute_command": "chmod +x {{ .Path }}; {{ .Vars }} sudo -E bash '{{ .Path }}'",
-      "script": "img/common/fluid-cicb-setup.sh"
-    },
-    {
-      "type": "shell",
-      "environment_vars": ["INSTALL_ROOT={{user `install_root`}}",
-                           "ARCH=x86_64"],
-      "execute_command": "chmod +x {{ .Path }}; {{ .Vars }} sudo -E bash '{{ .Path }}'",
-      "script": "img/ubuntu/hpctools-setup.sh"
-    },
-    {
-      "type": "shell",
-      "inline":[ "sudo mv /tmp/motd /etc/motd"]
-    },
-    {
-      "type": "shell",
-      "execute_command": "chmod +x {{ .Path }}; {{ .Vars }} sudo -E bash '{{ .Path }}'",
-      "script": "img/ubuntu/clear-messages.sh"
+      "script": "img/ubuntu/install.sh"
     }
   ]  
 }

@@ -1,16 +1,6 @@
 #!/bin/bash
 
 
-function system_deps(){
-
-    export DEBIAN_FRONTEND=noninteractive
-    dpkg  --configure -a
-    apt-get update -y 
-    apt-get install -y libnuma-dev python3-dev python3-pip build-essential zip unzip
-    pip3 install --upgrade google-cloud-storage google-api-python-client oauth2client google-cloud \
-    	               cython pyyaml parse docopt jsonschema dictdiffer
-}
-
 function cluster_services_setup(){
 
     mkdir -p /apps/cls/build
@@ -52,8 +42,12 @@ export HIP_PLATFORM=nvcc
 EOL
 }
 
-system_deps
-
 cluster_services_setup
 
 rocm_setup
+
+if [[ -n "$SPACK_BUCKET" ]]; then
+    spack mirror rm RCC
+fi
+
+cat /dev/null > /var/log/syslog
