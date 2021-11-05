@@ -6,7 +6,7 @@ Run WRF Benchmarks
 =================
 Before you begin
 =================
-To complete this tutorial, you will need to deploy the `RCC-WRF solution <https://console.cloud.google.com/marketplace/product/fluid-cluster-ops/rcc-wrf>` from the Google Cloud Marketplace. You can follow the instructions in the :doc:`Deploy from Marketplace Quickstart <../QuickStart/deploy_from_marketplace>`.
+To complete this tutorial, you will need to deploy the `RCC-WRF solution <https://console.cloud.google.com/marketplace/product/fluid-cluster-ops/rcc-wrf>`_ from the Google Cloud Marketplace. You can follow the instructions in the :doc:`Deploy from Marketplace Quickstart <../QuickStart/deploy_from_marketplace>`.
 
 For WRF, we recommend using the compute optimized **c2-standard-60** instances on Google Cloud.
 
