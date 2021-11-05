@@ -104,19 +104,14 @@ description:
     - software:
         - title: Spack
     - software:
-        - title: Singularity
-          version: 3.7.4
-    - software:
-        - title: GCC Compilers
-    - software:
-        - title: AOMP Compilers
-          version: 13.0.0
-    - software:
-        - title: ROCm
-          version: 4.3.0
+        - title: Intel OneAPI Compilers
+          version: 2021.3.0
     - software:
         - title: OpenMPI
           version: 4.0.5
+    - software:
+        - title: WRF
+          version: 4.2
   support:
     - title: Support
       descriptionHtml: >-
