@@ -4,9 +4,10 @@ Deploy from Marketplace
 
 The Research Computing Cluster (RCC) can be deployed from the Google Cloud Marketplace or by using :doc:`Terraform infrastructure-as-code <./deploy_with_terraform>`. Three different operating systems are available for the RCC and all are available on the Google Cloud Marketplace : 
 
-* `CentOS 7 <https://console.cloud.google.com/marketplace/fluid-cluster-ops/rcc-centos>`_
-* `Debian 10 <https://console.cloud.google.com/marketplace/fluid-cluster-ops/rcc-debian>`_
-* `Ubuntu 20.04 <https://console.cloud.google.com/marketplace/fluid-cluster-ops/rcc-ubuntu>`_
+* `CentOS 7 <https://console.cloud.google.com/marketplace/product/fluid-cluster-ops/rcc-centos>`_
+* `Debian 10 <https://console.cloud.google.com/marketplace/product/fluid-cluster-ops/rcc-debian>`_
+* `Ubuntu 20.04 <https://console.cloud.google.com/marketplace/product/fluid-cluster-ops/rcc-ubuntu>`_
+* `CentOS 7 + WRF <https://console.cloud.google.com/marketplace/product/fluid-cluster-ops/rcc-wrf>`_
 
 All of the solutions have the same configurations available when deploying from the marketplace. This guide will walk you through configuring a RCC deployment through the Google Cloud Marketplace.
 
@@ -30,9 +31,10 @@ Be aware of the following limitations :
 
 You can start by heading to one of the following marketplace pages for the RCC 
 
-* `RCC-CentOS (CentOS 7) <https://console.cloud.google.com/marketplace/fluid-cluster-ops/rcc-centos>`_
-* `RCC-Debian (Debian 10) <https://console.cloud.google.com/marketplace/fluid-cluster-ops/rcc-debian>`_
-* `RCC-Ubuntu (Ubuntu 20.04) <https://console.cloud.google.com/marketplace/fluid-cluster-ops/rcc-ubuntu>`_
+* `RCC-CentOS (CentOS 7) <https://console.cloud.google.com/marketplace/product/fluid-cluster-ops/rcc-centos>`_
+* `RCC-Debian (Debian 10) <https://console.cloud.google.com/marketplace/product/fluid-cluster-ops/rcc-debian>`_
+* `RCC-Ubuntu (Ubuntu 20.04) <https://console.cloud.google.com/marketplace/product/fluid-cluster-ops/rcc-ubuntu>`_
+* `RCC-CentOS + WRF (CentOS 7 + WRF 4.2) <https://console.cloud.google.com/marketplace/product/fluid-cluster-ops/rcc-wrf>`_
 
 Once at the Marketplace page, click "Launch"
 
@@ -99,6 +101,8 @@ Your cluster organizes compute nodes into "partitions"; these are groupings of c
 * Set the "Maximum Instance Count" to the maximum number of compute nodes to host in this partition. When configuring your partitions, we highly recommend you `verify that you have sufficient quota <https://cloud.google.com/compute/quotas>`_ to support the partition.
 * Set the "Number of static nodes to create" to the number of compute nodes in this partition that will remain live, even when jobs are not active.
 * Next, configure the machine type information.
+
+**For the RCC-WRF solution, ideal performance is achieved on compute optimized c2-standard-60 instances**
 
 (Optional) Configure additional compute partitions
 =====================================================
