@@ -1,0 +1,3 @@
+#!/bin/bash
+
+/apps/cls/bin/cluster-services init

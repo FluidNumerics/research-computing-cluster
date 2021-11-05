@@ -31,6 +31,16 @@ tags = [
             disabled = false
             config = "ci/cloudbuild.marketplace.yaml"
             rcc_file = "marketplace/ubuntu/rcc-cluster.yaml"
+          },
+          { prefix="wrf.*",
+            name="RCC-WRF",
+            img_family="rcc-wrf-v300-42"
+            project = "fluid-cluster-ops"
+            description = "Research computing cluster (CentOS RCC v3.0 - WRF v4.2)"
+            packer_json = "img/wrf/packer.json"
+            disabled = false
+            config = "ci/cloudbuild.marketplace.yaml"
+            rcc_file = "marketplace/wrf/rcc-cluster.yaml"
           }
        ]
 

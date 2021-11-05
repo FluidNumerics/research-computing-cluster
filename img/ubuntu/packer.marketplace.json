@@ -18,7 +18,7 @@
     "subnetwork" :"{{user `subnet`}}",
     "image_family": "{{user `image_family`}}",
     "image_name": "{{user `image_name`}}",
-    "image_licenses": ["projects/fluid-cluster-ops/global/licenses/fluid-slurm-gcp-ubuntu"],
+    "image_licenses": ["projects/fluid-cluster-ops/global/licenses/rcc-ubuntu"],
     "instance_name":"rcc-ubuntu-{{timestamp}}",
     "tags":["cloudbuild"],
     "scopes":["https://www.googleapis.com/auth/cloud-platform"],

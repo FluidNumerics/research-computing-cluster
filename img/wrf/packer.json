@@ -1,25 +1,27 @@
 {
   "variables": {
     "project_id": "fluid-cluster-ops",
-    "image_name": "fluid-slurm-gcp-debian-10-latest",
-    "image_family": "fluid-slurm-gcp-debian-10",
+    "image_name": "wrf-dev",
+    "image_family": "wrf-gcp",
     "install_root": "/opt",
     "zone": "us-central1-c",
-    "subnet": "default"
+    "subnet": "default",
+    "target_arch": "x86_64",
+    "compiler": "gcc@10.4.0"
   },
   "builders": [{
     "type": "googlecompute",
     "project_id": "{{user `project_id`}}",
-    "source_image_family": "rcc-debian-foss-v300",
+    "source_image_family": "wrf-intel-cascadelake",
     "source_image_project_id": "research-computing-cloud",
     "machine_type": "n1-standard-16",
     "disk_size": 100,
     "zone": "{{user `zone`}}",
     "subnetwork" :"{{user `subnet`}}",
     "image_family": "{{user `image_family`}}",
+    "image_licenses": ["projects/fluid-cluster-ops/global/licenses/wrf"],
     "image_name": "{{user `image_name`}}",
-    "image_licenses": ["projects/fluid-cluster-ops/global/licenses/rcc-debian"],
-    "instance_name":"rcc-debian-{{timestamp}}",
+    "instance_name":"wrf-{{timestamp}}",
     "tags":["cloudbuild"],
     "scopes":["https://www.googleapis.com/auth/cloud-platform"],
     "ssh_username": "packer",
@@ -28,7 +30,7 @@
   "provisioners": [
     {
       "type": "file",
-      "source": "img/common/motd",
+      "source": "img/wrf/motd",
       "destination": "/tmp/"
     },
     {
@@ -43,17 +45,10 @@
     {
       "type": "shell",
       "environment_vars": ["INSTALL_ROOT={{user `install_root`}}",
-                           "ARCH=x86_64"],
+                           "ARCH={{user `target_arch`}}",
+                           "COMPILER={{user `compiler`}}"],
       "execute_command": "chmod +x {{ .Path }}; {{ .Vars }} sudo -E bash '{{ .Path }}'",
-      "script": "img/common/spack-setup.sh"
-    },
-    {
-      "type": "shell",
-      "environment_vars": ["INSTALL_ROOT={{user `install_root`}}",
-                           "ARCH=x86_64"],
-      "execute_command": "chmod +x {{ .Path }}; {{ .Vars }} sudo -E bash '{{ .Path }}'",
-      "script": "img/debian/install.sh"
+      "script": "img/wrf/install.sh"
     }
   ]  
 }
-
