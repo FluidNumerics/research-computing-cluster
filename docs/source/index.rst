@@ -30,6 +30,14 @@ The Research Computing Cluster is a cloud-native (hybrid-capable), autoscaling c
    HowTo/add_filestore
    HowTo/add_lustre
    HowTo/run_a_singularity_container
+   Howto/enable_placement
+
+.. toctree::
+   :caption: Tutorials
+   :name: referencetoc
+   :titlesonly:
+
+   Tutorials/run_wrf_benchmarks
 
 .. toctree::
    :caption: Reference Guide
