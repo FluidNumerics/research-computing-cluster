@@ -57,7 +57,7 @@ Copy the example wrf-conus.sh batch file from /apps/share
 
     cp /apps/share/wrf-conus2p5.sh ~/
 
-For ideal performance, we recommend using compact placement for your partition. If you have not enabled compact placement for your compute partitionSee :doc:`How to enable compact placement <../HowTo/enable_compact_placement>` for more details.
+For ideal performance, we recommend using compact placement for your partition. If you have not enabled compact placement for your compute partitionSee :doc:`How to enable compact placement <../HowTo/enable_placement>` for more details.
 
 Submit the batch job using :code:`sbatch`, specifying the number of MPI tasks you want to launch with using the :code:`--ntasks` flag. 
 
