@@ -11,9 +11,10 @@ This repository hosts resources for Fluid Numerics' RCC Marketplace products inc
 ## Google Cloud Marketplace
 You can deploy an RCC cluster from Google Cloud Marketplace using any of the following solutions
 
-* [RCC-CentOS](https://console.cloud.google.com/marketplace/fluid-cluster-ops/rcc-centos)
-* [RCC-Debian](https://console.cloud.google.com/marketplace/fluid-cluster-ops/rcc-debian)
-* [RCC-Ubuntu](https://console.cloud.google.com/marketplace/fluid-cluster-ops/rcc-ubuntu)
+* [RCC-CentOS](https://console.cloud.google.com/marketplace/product/fluid-cluster-ops/rcc-centos)
+* [RCC-Debian](https://console.cloud.google.com/marketplace/product/fluid-cluster-ops/rcc-debian)
+* [RCC-Ubuntu](https://console.cloud.google.com/marketplace/product/fluid-cluster-ops/rcc-ubuntu)
+* [RCC-CentOS + WRF](https://console.cloud.google.com/marketplace/product/fluid-cluster-ops/rcc-wrf)
 
 ## Terraform
 You can deploy an RCC cluster with Terraform using any of the following solutions
