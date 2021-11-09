@@ -26,6 +26,5 @@ substitutions:
     _SUBNETWORK: 'default'
     _INSTALL_ROOT: '/opt'
     _PACKER_JSON: 'img/centos/packer.rcc.json'
-    _MARKETPLACE_DM: 'marketplace/centos'
 
 timeout : 43200s

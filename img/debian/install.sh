@@ -25,7 +25,7 @@ function cluster_services_setup(){
 cluster_services_setup
 
 # CVE-2014-2830
-apt-get remove -y cifs-utils
+apt-get remove --purge -y cifs-utils
 
 if [[ -n "$SPACK_BUCKET" ]]; then
     spack mirror rm RCC
