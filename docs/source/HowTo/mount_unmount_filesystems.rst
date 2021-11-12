@@ -120,5 +120,19 @@ To verify that the network storage has been mounted as expected, you can run :co
 .. code-block::shell
 
    $ srun -n1 df -h
+   Filesystem                            Size  Used Avail Use% Mounted on
+   udev                                  3.7G     0  3.7G   0% /dev
+   tmpfs                                 748M  8.4M  740M   2% /run
+   /dev/sda1                              99G   32G   63G  34% /
+   tmpfs                                 3.7G     0  3.7G   0% /dev/shm
+   tmpfs                                 5.0M     0  5.0M   0% /run/lock
+   tmpfs                                 3.7G     0  3.7G   0% /sys/fs/cgroup
+   /dev/sda15                            124M  5.7M  119M   5% /boot/efi
+   demo-controller:/etc/munge             99G   32G   63G  34% /etc/munge
+   demo-controller:/home                  99G   32G   63G  34% /home
+   demo-controller:/apps                  99G   32G   63G  34% /apps
+   demo-controller:/usr/local/etc/slurm   99G   32G   63G  34% /usr/local/etc/slurm
+   10.1.0.12:/mnt/nas                    500G    3G  497G   1% /mnt/nas
+   tmpfs                                 748M     0  748M   0% /run/user/1001
 
 
