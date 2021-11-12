@@ -59,7 +59,7 @@ Create a cluster-configuration file
 
 To create a cluster configuration file, you will use the :code:`cluster-services list all` command.
 
-.. code-block::shell
+.. code-block:: shell
 
    $ sudo su
    $ cluster-services list all > config.yaml
@@ -81,7 +81,8 @@ Edit the :code:`network_storage` to set the following information
 * :code:`network_storge.server_ip` - The resolvable IP address or hostname for the file server. For Lustre, this is the IP address of the Lustre MDS server.
 
 An example :code:`network_storage` definition is given below.
-.. code-block::yaml
+
+.. code-block:: yaml
 
     network_storage:
     - fs_type: nfs
@@ -97,7 +98,7 @@ Preview changes to your system
 
 Before making changes to your system, we recommend previewing and reviewing the planned changes to your cluster. To update mounted file systems on your cluster, you will use the :code:`cluster-services update mounts` command and provide the modified cluster configuration file as the source for the update.
 
-.. code-block::shell
+.. code-block:: shell
 
    $ cluster-services update mounts --config=config.yaml --preview
      + network_storage[0] = {'fs_type': 'nfs', 'local_mount': '/mnt/nas', 'mount_options': 'rw,hard,intr', 'remote_mount': '/mnt/nas', 'server_ip': '10.1.0.12'}
@@ -109,7 +110,7 @@ Apply changes to your system
 
 Once you have confirmed the settings for your network storage, you can apply the changes.
 
-.. code-block::shell
+.. code-block:: shell
 
    $ cluster-services update mounts --config=config.yaml
      + network_storage[0] = {'fs_type': 'nfs', 'local_mount': '/mnt/nas', 'mount_options': 'rw,hard,intr', 'remote_mount': '/mnt/nas', 'server_ip': '10.1.0.12'}
@@ -117,7 +118,7 @@ Once you have confirmed the settings for your network storage, you can apply the
 To verify that the network storage has been mounted as expected, you can run :code:`df -h` to view all mounted file systems on your cluster's login node. Similarly, we recommend submitting a Slurm job step to verify the network storage mounts to your compute nodes as well.
 
 
-.. code-block::shell
+.. code-block:: shell
 
    $ srun -n1 df -h
    Filesystem                            Size  Used Avail Use% Mounted on
