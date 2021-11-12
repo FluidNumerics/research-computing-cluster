@@ -5,7 +5,7 @@
 
 Research Computing Cluster
 ======================================
-The Research Computing Cluster is a cloud-native (hybrid-capable), autoscaling cluster that deploys on Google Cloud. The RCC comes with a Slurm job scheduler, Spack, Singularity, and a suite of compilers and developer tools to help you get started quickly on the cloud with a cluster that has the look-and-feel of on premise resources
+The Research Computing Cluster is a cloud-native (hybrid-capable), autoscaling cluster that deploys on Google Cloud. The RCC comes with a Slurm job scheduler, Spack, Singularity, and a suite of compilers and developer tools to help you get started quickly on the cloud with a cluster that has the look-and-feel of on premise resources.
 
 
 
