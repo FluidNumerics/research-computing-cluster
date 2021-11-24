@@ -24,7 +24,6 @@ The Research Computing Cluster is a cloud-native (hybrid-capable), autoscaling c
    :titlesonly:
 
    HowTo/customize_environment
-   HowTo/install_intel_oneapi_tools
    HowTo/submit_jobs
    HowTo/customize_compute_partitions
    HowTo/add_filestore
