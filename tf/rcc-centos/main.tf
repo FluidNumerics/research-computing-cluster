@@ -1,6 +1,6 @@
 
 module "rcc_tf" {
-  source = "github.com/FluidNumerics/rcc-tf?ref=v3.0.0"
+  source = "github.com/FluidNumerics/rcc-tf?ref=v3.0.0-1"
   cloudsql_enable_ipv4            = var.cloudsql_enable_ipv4
   cloudsql_slurmdb                = var.cloudsql_slurmdb
   cloudsql_name                   = var.cloudsql_name

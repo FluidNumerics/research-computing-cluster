@@ -279,6 +279,7 @@ variable "create_filestore" {
 variable "filestore" {
   type = object({
     name = string
+    local_mount = string
     zone = string
     tier = string
     capacity_gb = number
@@ -287,6 +288,7 @@ variable "filestore" {
   })
   default = {
     name = "filestore"
+    local_mount = "/mnt/filestore"
     zone = null
     tier = "PREMIUM"
     capacity_gb = 2048
@@ -303,6 +305,7 @@ variable "create_lustre" {
 variable "lustre" {
   type = object({
     image = string
+    local_mount = string
     project = string
     zone = string
     vpc_subnet = string
@@ -331,6 +334,7 @@ variable "lustre" {
   })
   default = {
     image = "projects/research-computing-cloud/global/images/family/lustre"
+    local_mount = "/mnt/lustre"
     project = null
     zone = null
     vpc_subnet = null

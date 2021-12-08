@@ -30,10 +30,7 @@ variable "cluster_name" {
 variable "compute_node_scopes" {
   description = "Scopes to apply to compute nodes."
   type        = list(string)
-  default = [
-    "https://www.googleapis.com/auth/monitoring.write",
-    "https://www.googleapis.com/auth/logging.write"
-  ]
+  default     = ["https://www.googleapis.com/auth/cloud-platform"]
 }
 
 variable "compute_node_service_account" {
@@ -171,10 +168,7 @@ variable "login_network_storage" {
 variable "login_node_scopes" {
   description = "Scopes to apply to login nodes."
   type        = list(string)
-  default = [
-    "https://www.googleapis.com/auth/monitoring.write",
-    "https://www.googleapis.com/auth/logging.write"
-  ]
+  default     = ["https://www.googleapis.com/auth/cloud-platform"]
 }
 
 variable "login_node_service_account" {
@@ -279,6 +273,7 @@ variable "create_filestore" {
 variable "filestore" {
   type = object({
     name = string
+    local_mount = string
     zone = string
     tier = string
     capacity_gb = number
@@ -287,6 +282,7 @@ variable "filestore" {
   })
   default = {
     name = "filestore"
+    local_mount = "/mnt/filestore"
     zone = null
     tier = "PREMIUM"
     capacity_gb = 2048
@@ -303,6 +299,7 @@ variable "create_lustre" {
 variable "lustre" {
   type = object({
     image = string
+    local_mount = string
     project = string
     zone = string
     vpc_subnet = string
@@ -331,6 +328,7 @@ variable "lustre" {
   })
   default = {
     image = "projects/research-computing-cloud/global/images/family/lustre"
+    local_mount = "/mnt/lustre"
     project = null
     zone = null
     vpc_subnet = null

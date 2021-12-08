@@ -71,6 +71,7 @@ partitions = [
 # ** Uncomment to add NFS (Filestore) file system ** #
 #create_filestore = true
 filestore = { name = "filestore"
+              local_mount = "/mnt/filestore"
               zone = null
               tier = "PREMIUM"
               capacity_gb = 2048
@@ -81,6 +82,7 @@ filestore = { name = "filestore"
 # ** Uncomment to add lustre file system ** #
 #create_lustre = true
 lustre = { image = "projects/research-computing-cloud/global/images/family/lustre"
+           local_mount = "/mnt/lustre"
            project = null
            zone = null
            vpc_subnet = null
