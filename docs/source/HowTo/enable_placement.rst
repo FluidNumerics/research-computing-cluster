@@ -25,7 +25,7 @@ Enable Compact Placement
 
 2. Go root using :code: `sudo su`
 
-3. Initialize cluster-services (if it has not been initialized already). On debian and Ubuntu solutions, you will need to reference the full path to cluster-services (:code:`/opt/cls/bin/cluster-services`)
+3. Initialize cluster-services (if it has not been initialized already). On Debian and Ubuntu solutions, you will need to reference the full path to cluster-services (:code:`/apps/cls/bin/cluster-services`)
 
 .. code-block:: shell
        
