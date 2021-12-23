@@ -70,6 +70,47 @@ By default, the Singularity container will mount a number of directories, includ
 
 The :code:`--bind` flag expects to be given two arguments, separated by a colon :code:`:`. The first argument is the path on the cluster that you want to mount to the container and the second argument is the path to mount this directory to within the container. For more information on this topic, see `Bind Paths and Mounts in the Singularity documentation <https://singularity.hpcng.org/user-docs/master/bind_paths_and_mounts.html>`_.
 
+
+Use GPUs with your container
+==============================
+Singularity supports deploying containers that use Nvidia's CUDA or AMD's ROCm solutions. Currently, on Google Cloud, and by extension the RCC, only Nvidia GPU's are available. If you've configured a compute partition to have GPU's attached, you can easily expose a GPU and the host system's drivers to the container using the :code:`--nv` flag.
+
+The example below shows how to deploy a Singularity container image with GPU support.
+
+.. code-block:: shell
+
+    singularity --nv exec --bind /path/to/host/directory:/path/to/container/mount ${HOME}/IMAGE-NAME.sif
+
+In order to use the :code:`--nv` flag, you need to make sure the following conditions are met
+
+* Your application is built in your container using a CUDA version that matches the RCC's CUDA version ( )
+* Your application is built in your container to target a GPU with the appropriate device capability.
+
+
+The latter requirement is met by using the appropriate compiler flag with :code:`nvcc` or :code:`GPU_TARGET` environment variable with :code:`hipcc` or :code:`hipfc`.
+
+When building applications with :code:`nvcc`, use the :code:`-arch=sm_XX` flag (replacing :code:`XX` with the appropriate device capability). A table of the GPU models and corresponding device capabilities is given below.
+
+.. list-table:: GPU Device Capabilities
+   :widths: 25 25
+   :header-rows: 1
+
+   * - GPU Model
+     - Device Capability
+   * - Nvidia Tesla K80 (Kepler)
+     - sm_30, sm_35, sm_37
+   * - Nvidia Tesla P100 (Pascal)
+     - sm_60, sm_61, sm_62
+   * - Nvidia Tesla P4 (Pascal)
+     - sm_60, sm_61, sm_62
+   * - Nvidia Tesla T4 (Turing)
+     - sm_75
+   * - Nvidia Tesla V100 (Volta)
+     - sm_70, sm_72
+   * - Nvidia Tesla A100 (Ampere)
+     - sm_80, sm_86
+
+
 Further Reading
 ================
 
