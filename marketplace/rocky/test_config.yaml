@@ -1,0 +1,9 @@
+imports:
+- path: rcc-centos.jinja
+
+resources:
+- name: rcc-centos
+  type: rcc-centos.jinja
+  properties:
+    cluster_name: rcc-demo
+    zone: us-central1-a
