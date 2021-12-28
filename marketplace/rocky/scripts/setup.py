@@ -643,7 +643,8 @@ def setup_controller():
     install_slurm_conf()
     install_slurmdbd_conf()
     setup_jwt_key()
-    util.run("create-munge-key -f")
+    util.run(f"create-munge-key -f -k {dirs.munge}/munge.key")
+    os.chown(f"{dirs.munge}/munge.key",980,980)
     util.run("systemctl restart munge")
 
     if cfg.controller_secondary_disk:

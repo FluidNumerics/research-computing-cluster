@@ -5,7 +5,7 @@
 {% set _ = networks.append(path_utils.networkPath(network)) %}
 {% endfor %}
 
-{% set image = 'https://www.googleapis.com/compute/v1/projects/fluid-cluster-ops/global/images/rcc-centos-7-v300-a19ce4c' %}
+{% set image = 'https://www.googleapis.com/compute/v1/projects/fluid-cluster-ops/global/images/rcc-rocky-v310-2e654cf' %}
 
 resources:
 - name: {{ properties['cluster_name'] }}

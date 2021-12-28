@@ -18,12 +18,12 @@ description:
     for deploying containerized applications.
 
 
-    This solution integrates with external file systems, including
-    Filestore which can provide additional high performance file IO for any
-    research computing workload. Additionally, the RCC is compatible with the
-    fluid-run continuous intergration/continuous benchmarking tool from Fluid
-    Numerics, which enables research software engineers to configure 
-    application tests that run at scale through Google Cloud Build.
+    This solution integrates with external file systems, including Filestore
+    which can provide additional high performance file IO for any research
+    computing workload. Additionally, the RCC is compatible with the fluid-run
+    continuous intergration/continuous benchmarking tool from Fluid Numerics,
+    which enables research software engineers to configure  application tests
+    that run at scale through Google Cloud Build.
   logo: '@media/rcc-logo.png'
   icon: '@media/rcc-icon.png'
   documentations:

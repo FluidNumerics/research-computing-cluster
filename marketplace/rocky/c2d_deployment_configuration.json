@@ -1,6 +1,6 @@
 {
   "defaultDeploymentType": "MULTI_VM",
-  "imageName": "rcc-centos-7-v300-a19ce4c",
+  "imageName": "rcc-rocky-v310-2e654cf",
   "projectId": "fluid-cluster-ops",
   "templateName": "nonexistent_template",
   "useSolutionPackage": true
