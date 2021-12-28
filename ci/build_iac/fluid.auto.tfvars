@@ -28,7 +28,7 @@ tags = [
             project = "fluid-cluster-ops"
             description = "Research computing cluster (Ubuntu RCC v3.0)"
             packer_json = "img/ubuntu/packer.marketplace.json"
-            disabled = false
+            disabled = true
             config = "ci/cloudbuild.marketplace.yaml"
             rcc_file = "marketplace/ubuntu/rcc-cluster.yaml"
           },
@@ -41,6 +41,16 @@ tags = [
             disabled = false
             config = "ci/cloudbuild.marketplace.yaml"
             rcc_file = "marketplace/wrf/rcc-cluster.yaml"
+          },
+          { prefix="v3.0.*",
+            name="RCC-Rocky",
+            img_family="rcc-rocky-v310"
+            project = "fluid-cluster-ops"
+            description = "Research computing cluster (Rocky Linux RCC v3.1.0)"
+            packer_json = "img/rocky/packer.json"
+            disabled = false
+            config = "ci/cloudbuild.marketplace.yaml"
+            rcc_file = "marketplace/rocky/rcc-cluster.yaml"
           }
        ]
 
