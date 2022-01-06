@@ -34,7 +34,7 @@ The Research Computing Cluster is a cloud-native (hybrid-capable), autoscaling c
 
 .. toctree::
    :caption: Tutorials
-   :name: referencetoc
+   :name: tutorialstoc
    :titlesonly:
 
    Tutorials/run_wrf_benchmarks
@@ -46,6 +46,13 @@ The Research Computing Cluster is a cloud-native (hybrid-capable), autoscaling c
 
    Reference/architecture
    Reference/cluster_services
+
+.. toctree::
+   :caption: Managed Services
+   :name: managedtoc
+   :titlesonly:
+
+   Managed/user_onboarding
 
 .. toctree::
    :caption: Support
