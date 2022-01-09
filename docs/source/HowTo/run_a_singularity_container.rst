@@ -83,7 +83,7 @@ The example below shows how to deploy a Singularity container image with GPU sup
 
 In order to use the :code:`--nv` flag, you need to make sure the following conditions are met
 
-* Your application is built in your container using a CUDA version that matches the RCC's CUDA version ( )
+* Your application is built in your container using a CUDA version that matches the RCC's CUDA version ( 11.4.2 )
 * Your application is built in your container to target a GPU with the appropriate device capability.
 
 
