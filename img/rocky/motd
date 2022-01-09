@@ -1,0 +1,34 @@
+=======================================================================  
+
+  Open-Source Notices
+
+=======================================================================  
+
+  This solution contains free and open-source software. 
+
+  > Package management for packages is managed by Spack
+
+                    https://spack.io
+
+    Spack source code and license are available under /apps/spack
+
+    Packages installed via spack have source code and licenses retained
+    and can be viewed under /opt/rcc/view/share . 
+
+=======================================================================  
+  Research Computing Cluster (RCC)
+  Copyright 2021 Fluid Numerics LLC
+
+=======================================================================  
+<><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><
+
+  Before using this solution, review the RCC EULA at
+
+  https://help.fluidnumerics.com/eula
+
+  You can obtain basic support by writing to support@fluidnumerics.com
+
+<><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><
+-----------------------------------------------------------------------
+
+=======================================================================  
