@@ -24,7 +24,11 @@ The Research Computing Cluster is a cloud-native (hybrid-capable), autoscaling c
    :titlesonly:
 
    HowTo/customize_environment
-   HowTo/submit_jobs
+   HowTo/batch_jobs
+   HowTo/interactive_jobs
+   HowTo/monitor_jobs
+   HowTo/mpi_applications
+   HowTo/gpu_applications
    HowTo/initialize_cluster_services
    HowTo/customize_compute_partitions
    HowTo/run_a_singularity_container
