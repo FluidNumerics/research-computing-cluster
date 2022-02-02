@@ -23,7 +23,7 @@ The Research Computing Cluster is a cloud-native (hybrid-capable), autoscaling c
    :name: howto
    :titlesonly:
 
-   HowTo/customize_environment
+   HowTo/manage_spack_packages
    HowTo/batch_jobs
    HowTo/interactive_jobs
    HowTo/monitor_jobs
@@ -34,7 +34,6 @@ The Research Computing Cluster is a cloud-native (hybrid-capable), autoscaling c
    HowTo/run_a_singularity_container
    HowTo/enable_placement
    HowTo/mount_unmount_filesystems
-
 
 .. toctree::
    :caption: Tutorials
