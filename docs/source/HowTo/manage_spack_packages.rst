@@ -40,28 +40,12 @@ For the RCC, we highly recommend following a "build,test,deploy" model for opera
 Use the checklist below to help guide package installation with spack.
 
 
-1. First check that the desired package can be built with spack using the spack list command. Alternatively, you can visit the spack packages list page to see if the desired package is supported.
+1. First check that the desired package can be built with spack using the :code:`spack list` command. Alternatively, you can visit the `spack packages list <https://spack.readthedocs.io/en/latest/package_list.html>`_ page to see if the desired package is supported.
 
-2. Use the spack info command to familiarize yourself with the packages dependencies, available versions, and available build specs.
+2. Use the :code:`spack info` command to familiarize yourself with the packages dependencies, available versions, and available build specs.
 
-3. Preview what packages will be installed by using spack spec. Keep in mind that you can specify the package version and the compiler to build with. Additionally, you can concretize the package variants to customize the installation. For example, some packages like hdf5 can be built with or without mpi support. The example below will provide a spec for hdf5@1.10.7 using the provided gcc@10.2 and openmpi@4.0.2 packages. This eliminates the need for spack to install additional dependencies.
+3. Preview what packages will be installed by using :code:`spack spec`. Keep in mind that you can specify the package version and the compiler to build with. Additionally, you can concretize the package variants to customize the installation. For example, some packages like hdf5 can be built with or without mpi support. 
 
+4. Consider the target architecture that you want to run on. On Google Cloud, you have access to haswell/broadwell (n1 & e2 instances), cascadelake (a2, c2, & n2 instances), zen3 (n2d), and zen4 (c2d) instances. For many applications, specifying the target architecture instructs the compiler to leverage architecture specific optimizations. Often, this can improve application performance and consequently reduce runtime costs.
 
-spack spec hdf5@1.10.7 % gcc@10.2 +cxx+fortran+mpi+threadsafe^openmpi@4.0.2
-
-Input spec
-
---------------------------------
-
-hdf5
-
-Concretized
-
---------------------------------
-
-hdf5@1.10.7%gcc@10.2+cxx~debug+fortran~hl~java+mpi+pic+shared~szip+threadsafe api=none arch=linux-debian10-haswell
-
-Install the package using the spack install command.
-Since packages are installed from source, some packages may take a while to build. As an example, to install hdf5@1.10.7 using the provided gcc@10.2 and openmpi@4.0.2 packages,
-
-spack install hdf5@1.10.7 % gcc@10.2 +cxx+fortran+mpi+threadsafe^openmpi@4.0.2
+5. Install the package using the :Code:`spack install` command. Since packages are installed from source, some packages may take a while to build. 
