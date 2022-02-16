@@ -78,6 +78,7 @@ where :code:`<username>` is replaced with your assigned username on the cluster 
 ==================
 Next Steps
 ==================
-:doc:`Submit Batch Jobs <../HowTo/batch_jobs>`
-:doc:`Submit Interactive Jobs <../HowTo/interactive_jobs>`
-:doc:`Load Software with Spack <../HowTo/manage_spack_packages>`
+
+* :doc:`Submit Batch Jobs <../HowTo/batch_jobs>`
+* :doc:`Submit Interactive Jobs <../HowTo/interactive_jobs>`
+* :doc:`Load Software with Spack <../HowTo/manage_spack_packages>`
