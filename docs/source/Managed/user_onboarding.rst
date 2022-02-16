@@ -74,3 +74,10 @@ Once your account has been fully credentialled, you will receive an email from F
 
 
 where :code:`<username>` is replaced with your assigned username on the cluster and :code:`<cluster-name>` is the assigned name of your cluster. At any time, you can find your account user name and cluster name at the `RCC User Management app <https://www.appsheet.com/start/757bdf39-6c72-4826-ae69-f17e4bf18787>`_ .
+
+==================
+Next Steps
+==================
+:doc:`Submit Batch Jobs <../HowTo/batch_jobs>`
+:doc:`Submit Interactive Jobs <../HowTo/interactive_jobs>`
+:doc:`Load Software with Spack <../HowTo/manage_spack_packages>`
