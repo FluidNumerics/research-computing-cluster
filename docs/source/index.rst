@@ -23,6 +23,7 @@ The Research Computing Cluster is a cloud-native (hybrid-capable), autoscaling c
    :name: howto
    :titlesonly:
 
+   HowTo/logging_in
    HowTo/manage_spack_packages
    HowTo/batch_jobs
    HowTo/interactive_jobs
