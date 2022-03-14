@@ -39,7 +39,6 @@ To summarize this section,
 
 Paraview
 ---------
-
 The RCC-CFD VM image includes `Paraview <https://www.paraview.org/>`_, a scalable tool for scientific data visualization. Paraview is commonly used for visualizing OpenFOAM model output, in addition to output from other CFD applications. Paraview is installed using pre-compiled downloads from paraview.org with MPI and EGL enabled. MPI-built paraview allows for parallel rendering, a particularly useful feature for large datasets. The EGL backend allows for you to take advantage of Nvidia GPUs for many rendering tasks as well. 
 
 Paraview is installed under :code:`/opt/paraview`. When a user logs in, the :code:`/etc/profile.d/z11_paraview.sh` script is sourced automatically so that Paraview is found in the default serach path. We've also included scripts that can help you easily connect a local Paraview client on your workstation to a Paraview server running in Google Cloud underneath :code:`/opt/share/`. These scripts include a PVSC XML file in addition to a template job submission script that handles launching paraview server on compute nodes as well as establishing a reverse ssh connection to your local client.
@@ -57,15 +56,10 @@ Getting Started with the Marketplace Solution
 ==============================================
 
 
-.. code-block:: shell
-
-    $ tail -n1 ${HOME}/wrf-benchmark/rsl.out.0000
-    d01 2018-06-17_06:00:00 wrf: SUCCESS COMPLETE WRF
 
 ====================================
 Add OpenFOAM to an existing cluster
 ====================================
-
 If you are already running a Research Computing Cluster (RCC) from Fluid Numerics on Google Cloud, you can easily add a compute partition to your cluster that deploys compute nodes with one of the RCC-CFD images.
 
 To add OpenFOAM to an existing cluster,
@@ -77,13 +71,11 @@ To add OpenFOAM to an existing cluster,
    
    sudo su
 
-
 3. Create a temporary cluster configuration file to plan the changes to your cluster
 
 .. code-block:: shell
    
    cluster-services list all > config.yaml
-
 
 4. Open the :code:`config.yaml` in a text editor and duplicate an existing partition definition. Edit this duplicate partition to set the partition name to :code:`openfoam` and the VM image to `projects/fluid-cluster-ops/global/images/family/rcc-cfd-gcc-x86`.
 
@@ -92,14 +84,12 @@ To add OpenFOAM to an existing cluster,
    
    # TO DO
 
- 
 5. Preview the changes to your cluster, using :code:`cluster-services`
 
 
 .. code-block:: shell
    
    cluster-services update partitions --config=config.yaml --preview
-
 
 6.  When you are ready to apply the changes, you can run the same command while ommitting the :code:`--preview` flag.
 
