@@ -36,6 +36,13 @@ The Research Computing Cluster is a cloud-native (hybrid-capable), autoscaling c
    HowTo/mount_unmount_filesystems
 
 .. toctree::
+   :caption: Research Applications
+   :name: tutorialstoc
+   :titlesonly:
+
+   ResearchApplications/openfoam
+
+.. toctree::
    :caption: Tutorials
    :name: tutorialstoc
    :titlesonly:
