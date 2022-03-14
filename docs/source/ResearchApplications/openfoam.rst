@@ -7,9 +7,11 @@ OpenFOAM
 This documentation covers
 
 1. What is included in the RCC-CFD VM Images
-2. How to get started from the `Marketplace solution <https://console.cloud.google.com/marketplace/product/fluid-cluster-ops/cloud-cfd>`_
-3. How to add OpenFOAM to an existing cluster
-4. How to use Target Architecture VM images for optimal performance
+2. How to add OpenFOAM to an existing cluster
+3. How to use Target Architecture VM images for optimal performance
+
+If you'd like to deploy RCC-CFD from the Google Cloud Marketplace, see the :docs:`Deploy from Marketplace <../QuickStart/deploy_from_marketplace>`_ documentation.
+If you'd like to deploy RCC-CFD using Terraform, see the :docs:`Deploy with Terraform <../QuickStart/deploy_with_terraform>`_ documentation.
 
 
 ==========================
@@ -50,13 +52,6 @@ To summarize this section,
 * :code:`/etc/profile.d/z11_paraview.sh` defines the necessary environment variables for exposing the Paraview binaries to each user automatically when they log in.
 
 
-
-==============================================
-Getting Started with the Marketplace Solution
-==============================================
-
-
-
 ====================================
 Add OpenFOAM to an existing cluster
 ====================================
@@ -71,10 +66,11 @@ To add OpenFOAM to an existing cluster,
    
    sudo su
 
-3. Create a temporary cluster configuration file to plan the changes to your cluster
+3. Create a temporary cluster configuration file to plan the changes to your cluster. If this is your first time running the :code:`cluster-services` command, you will need to initialize this :code:`cluster-services` command line interface, as shown below.
 
 .. code-block:: shell
    
+   cluster-services init
    cluster-services list all > config.yaml
 
 4. Open the :code:`config.yaml` in a text editor and duplicate an existing partition definition. Edit this duplicate partition to set the partition name to :code:`openfoam` and the VM image to `projects/fluid-cluster-ops/global/images/family/rcc-cfd-gcc-x86`.

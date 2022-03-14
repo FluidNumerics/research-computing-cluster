@@ -8,6 +8,7 @@ The Research Computing Cluster (RCC) can be deployed from the Google Cloud Marke
 * `Debian 10 <https://console.cloud.google.com/marketplace/product/fluid-cluster-ops/rcc-debian>`_
 * `Ubuntu 20.04 <https://console.cloud.google.com/marketplace/product/fluid-cluster-ops/rcc-ubuntu>`_
 * `CentOS 7 + WRF <https://console.cloud.google.com/marketplace/product/fluid-cluster-ops/rcc-wrf>`_
+* `RCC-CFD (OpenFOAM, Paraview, GMSH) <https://console.cloud.google.com/marketplace/product/fluid-cluster-ops/cloud-cfd>`_
 
 All of the solutions have the same configurations available when deploying from the marketplace. This guide will walk you through configuring a RCC deployment through the Google Cloud Marketplace.
 
@@ -35,6 +36,7 @@ You can start by heading to one of the following marketplace pages for the RCC
 * `RCC-Debian (Debian 10) <https://console.cloud.google.com/marketplace/product/fluid-cluster-ops/rcc-debian>`_
 * `RCC-Ubuntu (Ubuntu 20.04) <https://console.cloud.google.com/marketplace/product/fluid-cluster-ops/rcc-ubuntu>`_
 * `RCC-CentOS + WRF (CentOS 7 + WRF 4.2) <https://console.cloud.google.com/marketplace/product/fluid-cluster-ops/rcc-wrf>`_
+* `RCC-CFD (OpenFOAM, Paraview, GMSH) <https://console.cloud.google.com/marketplace/product/fluid-cluster-ops/cloud-cfd>`_
 
 Once at the Marketplace page, click "Launch"
 

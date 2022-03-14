@@ -7,6 +7,8 @@ The Research Computing Cluster (RCC) can be deployed with Terraform infrastructu
 * `CentOS 7 <https://console.cloud.google.com/marketplace/fluid-cluster-ops/rcc-centos>`_
 * `Debian 10 <https://console.cloud.google.com/marketplace/fluid-cluster-ops/rcc-debian>`_
 * `Ubuntu 20.04 <https://console.cloud.google.com/marketplace/fluid-cluster-ops/rcc-ubuntu>`_
+* `CentOS 7 + WRF <https://console.cloud.google.com/marketplace/product/fluid-cluster-ops/rcc-wrf>`_
+* `RCC-CFD (OpenFOAM, Paraview, GMSH) <https://console.cloud.google.com/marketplace/product/fluid-cluster-ops/cloud-cfd>`_
 
 All of the solutions have the same configurations available when deploying with Terraform. This guide will walk you through configuring a RCC deployment using the `rcc-tf <https://github.com/FluidNumerics/rcc-tf>`_ module by deploying `examples on the Research Computing Cluster repository <https://github.com/FluidNumerics/research-computing-cluster/tree/main/tf>`_.
 
@@ -29,6 +31,8 @@ To learn about pricing and licensing and features of the RCC solutions, you can 
 * `RCC-CentOS (CentOS 7) <https://console.cloud.google.com/marketplace/fluid-cluster-ops/rcc-centos>`_
 * `RCC-Debian (Debian 10) <https://console.cloud.google.com/marketplace/fluid-cluster-ops/rcc-debian>`_
 * `RCC-Ubuntu (Ubuntu 20.04) <https://console.cloud.google.com/marketplace/fluid-cluster-ops/rcc-ubuntu>`_
+* `CentOS 7 + WRF <https://console.cloud.google.com/marketplace/product/fluid-cluster-ops/rcc-wrf>`_
+* `RCC-CFD (OpenFOAM, Paraview, GMSH) <https://console.cloud.google.com/marketplace/product/fluid-cluster-ops/cloud-cfd>`_
 
 We recommend that you `log into Google Cloud Shell <https://shell.cloud.google.com?show=terminal>`_, since Cloud Shell provides necessary authentication and command line tools, including Terraform, git, and the gcloud SDK. If you plan to use your own system, you will need to `install and initialize the gcloud SDK <https://cloud.google.com/sdk/docs/install>`_ and `Terraform <https://terraform.io>`_.
 
