@@ -185,4 +185,3 @@ Further Reading
 * :doc:`Get started using the Marketplace deployment <../QuickStart/deploy_from_marketplace>`
 * :doc:`Get started using Terraform <../QuickStart/deploy_with_terraform>`
 * `Codelab - Run the NACA0012 Aerofoil (2D) Benchmark <https://fluidnumerics.github.io/rcc-codelabs/cloud-cfd/run-openfoam-on-gcp-with-cloud-cfd/#0>`_
-* `Codelab - Visualize NACA0012 Aerofoil (2D) Simulation data using Paraview Client-Server connection <>`_
