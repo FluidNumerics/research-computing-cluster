@@ -1,9 +1,9 @@
 imports:
-- path: rcc-wrf.jinja
+- path: rcc-cfd.jinja
 
 resources:
-- name: rcc-wrf
-  type: rcc-wrf.jinja
+- name: rcc-cfd
+  type: rcc-cfd.jinja
   properties:
     cluster_name: rcc-demo
     zone: us-central1-a
