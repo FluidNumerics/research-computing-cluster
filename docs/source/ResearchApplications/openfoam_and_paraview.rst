@@ -122,7 +122,7 @@ Image Family               Target Architecture   Machine Type
 ========================== ===================== ==================
 `rcc-cfd-gcc-x86`          x86                   Any
 `rcc-cfd-gcc-zen3`         zen3                  c2d
-`rcc-cfd-gcc-cascadelake`  zen3                  c2
+`rcc-cfd-gcc-cascadelake`  cascadelake           c2
 ========================== ===================== ==================
 
 The image self-link, which is used in your cluster configuration file or in a terraform deployment configuration, is :code:`projects/fluid-cluster-ops/global/images/family/[FAMILY]`, where :code:`[FAMILY]` is one of the image families listed in the first column of the table above.
