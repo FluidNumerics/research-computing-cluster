@@ -92,10 +92,6 @@ To add OpenFOAM to an existing cluster,
 4. Open the :code:`config.yaml` in a text editor and duplicate an existing partition definition. Edit this duplicate partition to set the partition name to :code:`openfoam` and the VM image to `projects/fluid-cluster-ops/global/images/family/rcc-cfd-gcc-x86`.
 
 
-.. code-block:: shell
-   
-   # TO DO
-
 5. Preview the changes to your cluster, using :code:`cluster-services`
 
 
