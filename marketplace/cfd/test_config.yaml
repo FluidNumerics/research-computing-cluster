@@ -1,9 +1,9 @@
 imports:
-- path: rcc-rocky.jinja
+- path: rcc-cfd.jinja
 
 resources:
-- name: rcc-rocky
-  type: rcc-rocky.jinja
+- name: rcc-cfd
+  type: rcc-cfd.jinja
   properties:
     cluster_name: rcc-demo
     zone: us-central1-a

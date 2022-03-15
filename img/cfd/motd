@@ -1,0 +1,47 @@
+=======================================================================  
+
+  Open-Source Notices
+
+=======================================================================  
+
+  This solution contains free and open-source software. 
+
+  > Package management for packages is managed by Spack
+
+                    https://spack.io
+
+    All applications installed can be listed using 
+
+    $ spack find
+
+    You can obtain the source code and licenses for any 
+    installed application using the following command :
+
+    $ ls $(spack location -i pkg)/share/pkg/src
+
+    replacing "pkg" with the name of the package.
+
+
+=======================================================================  
+  Research Computing Cluster (RCC)
+  Computational Fluid Dynamics
+  Copyright 2020-2022 Fluid Numerics LLC
+
+=======================================================================  
+<><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><
+
+  Before using this solution, review the RCC EULA at
+
+  https://help.fluidnumerics.com/eula
+
+  You can obtain basic support by writing to support@fluidnumerics.com
+
+  This offering is not approved or endorsed by OpenCFD Limited, producer 
+  and distributor of the OpenFOAM® software via www.openfoam.com, and 
+  owner of the OPENFOAM® and OpenCFD® trade marks.
+
+<><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><
+-----------------------------------------------------------------------
+
+=======================================================================  
+

@@ -1,12 +1,12 @@
 
 imports:
-  - path: rcc-rocky.jinja
+  - path: rcc-cluster.jinja
 
 resources:
 - name: rcc
-  type: rcc-rocky.jinja
+  type: rcc-cluster.jinja
   properties:
-    cluster_name: rcc-rocky
+    cluster_name: <IMAGE_FAMILY>
     zone: us-west1-b
     controller_image: projects/fluid-cluster-ops/global/images/<IMAGE_FAMILY>-<SHORT_SHA>
     controller_machine_type: n1-standard-2

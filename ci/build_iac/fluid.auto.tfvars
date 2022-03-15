@@ -51,7 +51,37 @@ tags = [
             disabled = false
             config = "ci/cloudbuild.marketplace.yaml"
             rcc_file = "marketplace/rocky/rcc-cluster.yaml"
-          }
+          },
+          { prefix="cfd.*",
+            name="RCC-CFD-x86",
+            img_family="rcc-cfd-gcc-x86"
+            project = "fluid-cluster-ops"
+            description = "Research computing cluster (CentOS RCC v3.0 - OpenFOAM8 x86)"
+            packer_json = "img/cfd/packer.gcc.x86.json"
+            disabled = false
+            config = "ci/cloudbuild.marketplace.yaml"
+            rcc_file = "marketplace/cfd/rcc-cluster.yaml"
+          },
+          { prefix="cfd.*",
+            name="RCC-CFD-cascadelake",
+            img_family="rcc-cfd-gcc-cascadelake"
+            project = "fluid-cluster-ops"
+            description = "Research computing cluster (CentOS RCC v3.0 - OpenFOAM8 cascadelake)"
+            packer_json = "img/cfd/packer.gcc.cascadelake.json"
+            disabled = false
+            config = "ci/cloudbuild.marketplace.yaml"
+            rcc_file = "marketplace/cfd/rcc-cluster.yaml"
+          },
+          { prefix="cfd.*",
+            name="RCC-CFD-zen3",
+            img_family="rcc-cfd-gcc-zen3"
+            project = "fluid-cluster-ops"
+            description = "Research computing cluster (CentOS RCC v3.0 - OpenFOAM8 zen3)"
+            packer_json = "img/cfd/packer.gcc.zen3.json"
+            disabled = false
+            config = "ci/cloudbuild.marketplace.yaml"
+            rcc_file = "marketplace/cfd/rcc-cluster.yaml"
+          },
        ]
 
 builds = [
