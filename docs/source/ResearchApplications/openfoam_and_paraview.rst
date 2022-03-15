@@ -14,8 +14,8 @@ This documentation covers
 3. Target Architecture VM images
 4. Basics of connecting Paraview Server on the RCC to your local Paraview client
 
-If you'd like to deploy RCC-CFD from the Google Cloud Marketplace, see the :docs:`Deploy from Marketplace <../QuickStart/deploy_from_marketplace>`_ documentation.
-If you'd like to deploy RCC-CFD using Terraform, see the :docs:`Deploy with Terraform <../QuickStart/deploy_with_terraform>`_ documentation.
+If you'd like to deploy RCC-CFD from the Google Cloud Marketplace, see the :doc:`Deploy from Marketplace <../QuickStart/deploy_from_marketplace>` documentation.
+If you'd like to deploy RCC-CFD using Terraform, see the :doc:`Deploy with Terraform <../QuickStart/deploy_with_terraform>` documentation.
 
 
 ==========================
@@ -116,15 +116,20 @@ Optimize Performance with Target Architecture VM Images
 Google Cloud offers a variety of compute platforms and knowing which platform will provide the best performance and cost a'priori for a given simulation is challenging. Currently, Fluid Numerics' recommends using the c2d (AMD Epyc Milan) instances and OpenFOAM compiled with GCC 10.3.0 with the zen3 target optimizations. This recommendation is based on benchmarks of :code:`interFoam`. For other OpenFOAM applications, or even user-built solvers, this platform may be optimal but is not guaranteed. 
 
 To help facilitate performance discovery, Fluid Numerics provides the following target architecture VM images
+========================== ===================== ==================
+Image Family               Target Architecture   Machine Type
+========================== ===================== ==================
+`rcc-cfd-gcc-x86`          x86                   Any
+`rcc-cfd-gcc-zen3`         zen3                  c2d
+`rcc-cfd-gcc-cascadelake`  zen3                  c2
+========================== ===================== ==================
 
-* :code:`projects/fluid-cluster-ops/global/images/family/rcc-cfd-gcc-x86` : OpenFOAM v8 built with GCC 10.3.0 and generic x86 target architecture
-* :code:`projects/fluid-cluster-ops/global/images/family/rcc-cfd-gcc-zen3` : OpenFOAM v8 built with GCC 10.3.0 and zen3 (c2d instances) target architecture **(Recommended)**
-* :code:`projects/fluid-cluster-ops/global/images/family/rcc-cfd-gcc-cascadelake` : OpenFOAM v8 built with GCC 10.3.0 and cascadelake (c2 instances) target architecture
-* :code:`projects/fluid-cluster-ops/global/images/family/rcc-cfd-intel-cascadelake` : OpenFOAM v8 built with Intel OneAPI compilers and cascadelake (c2 instances) target architecture
+The image self-link, which is used in your cluster configuration file or in a terraform deployment configuration, is :code:`projects/fluid-cluster-ops/global/images/family/[FAMILY]`, where :code:`[FAMILY]` is one of the image families listed in the first column of the table above.
+
 
 Any of these images can be used to run OpenFOAM, but significant differences in performance of some OpenFOAM binaries has been noticed. When preparing for a production deployment with OpenFOAM, we recommend that you benchmark your relevant simulations using each of the above build flavors paired with the corresponding machine type on Google Cloud. 
 
-If you need assistance with benchmarking & discovery, :doc:`reach out to Fluid Numerics support <../Support/support>`_
+If you need assistance with benchmarking & discovery, :doc:`reach out to Fluid Numerics support <../Support/support>`
 
 
 ======================================
@@ -138,8 +143,8 @@ To get started, you will need to have Paraview 5.10.0 installed on your local wo
 
 These instructions assume that you have deployed an RCC-CFD cluster and have configured `OS Login <https://cloud.google.com/compute/docs/oslogin>`_ for your account so that you can SSH to Google Cloud VM instances using third party SSH utilities.
 
-If you'd like to deploy RCC-CFD from the Google Cloud Marketplace, see the :docs:`Deploy from Marketplace <../QuickStart/deploy_from_marketplace>`_ documentation.
-If you'd like to deploy RCC-CFD using Terraform, see the :docs:`Deploy with Terraform <../QuickStart/deploy_with_terraform>`_ documentation.
+If you'd like to deploy RCC-CFD from the Google Cloud Marketplace, see the :doc:`Deploy from Marketplace <../QuickStart/deploy_from_marketplace>` documentation.
+If you'd like to deploy RCC-CFD using Terraform, see the :doc:`Deploy with Terraform <../QuickStart/deploy_with_terraform>` documentation.
 
 You will need to create a `firewall rule <https://cloud.google.com/vpc/docs/using-firewalls>`_ for the network your cluster is deployed to that allows for tcp communications on port 11000 from your local workstation. If you deployed RCC-CFD using Terraform, this firewall rule is created for you.
 
@@ -177,4 +182,5 @@ This will open an XTerm window where a command will be executed to submit the Re
 Further Reading 
 =================
 
-
+* `Codelab - Run the NACA0012 Aerofoil (2D) Benchmark <https://fluidnumerics.github.io/rcc-codelabs/cloud-cfd/run-openfoam-on-gcp-with-cloud-cfd/#0>`_
+* `Codelab - Visualize NACA0012 Aerofoil (2D) Simulation data using Paraview Client-Server connection <>`_
