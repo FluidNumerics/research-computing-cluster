@@ -6,6 +6,8 @@ function cluster_services_setup(){
     mkdir -p /apps/cls/bin
     mkdir -p /apps/cls/etc
     mkdir -p /apps/cls/log
+
+    yum install -y python3-devel
     
     cp /tmp/cluster-services/src/cluster-config.schema.json /apps/cls/etc/
     cp /tmp/cluster-services/src/cluster_services.py /apps/cls/build/
