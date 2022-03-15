@@ -1,14 +1,18 @@
 ####################
-OpenFOAM
+OpenFOAM & Paraview
 ####################
 
-`OpenFOAM <https://openfoam.org/>`_ is an open-source finite-volume based computational fluid dynamics toolkit for simulating a variety of fluid phenomena. The Research Computing Cluster (RCC) offers OpenFOAM through virtual machine images that can be easily incorporated into an existing RCC. Alternatively, if you want to get started with a click-to-deploy solution that has OpenFOAM, Paraview, and GMSH installed, you can use the `RCC-CFD Marketplace solution <https://console.cloud.google.com/marketplace/product/fluid-cluster-ops/cloud-cfd>`_.
+`OpenFOAM <https://openfoam.org/>`_ is an open-source finite-volume based computational fluid dynamics toolkit for simulating a variety of fluid phenomena. `Paraview <https://paraview.org/>`_ is an open-source toolkit for visualizing scientific data and is capable of leveraging clusters of compute instances for rendering large datasets. 
+
+The Research Computing Cluster (RCC) offers OpenFOAM and Paraview through virtual machine images that can be easily incorporated into an existing RCC. Alternatively, if you want to get started with a click-to-deploy solution that has OpenFOAM, Paraview, and GMSH installed, you can use the `RCC-CFD Marketplace solution <https://console.cloud.google.com/marketplace/product/fluid-cluster-ops/cloud-cfd>`_.
+
 
 This documentation covers
 
 1. What is included in the RCC-CFD VM Images
 2. How to add OpenFOAM to an existing cluster
-3. How to use Target Architecture VM images for optimal performance
+3. Target Architecture VM images
+4. Basics of connecting Paraview Server on the RCC to your local Paraview client
 
 If you'd like to deploy RCC-CFD from the Google Cloud Marketplace, see the :docs:`Deploy from Marketplace <../QuickStart/deploy_from_marketplace>`_ documentation.
 If you'd like to deploy RCC-CFD using Terraform, see the :docs:`Deploy with Terraform <../QuickStart/deploy_with_terraform>`_ documentation.
@@ -109,6 +113,53 @@ To help facilitate performance discovery, Fluid Numerics provides the following 
 Any of these images can be used to run OpenFOAM, but significant differences in performance of some OpenFOAM binaries has been noticed. When preparing for a production deployment with OpenFOAM, we recommend that you benchmark your relevant simulations using each of the above build flavors paired with the corresponding machine type on Google Cloud. 
 
 If you need assistance with benchmarking & discovery, :doc:`reach out to Fluid Numerics support <../Support/support>`_
+
+
+======================================
+Paraview Server to Client Connections
+======================================
+For high resolution simulations, visualizing and post-processing CFD data on your local work station is either not possible or too slow to be practical. The RCC-CFD VM image comes with Paraview server, a PVSC XML file, and a batch script that can be used to connect your local Paraview client to Paraview server running in the cloud. With this configuration, the computations required for rendering are executed on Google Cloud and the resulting graphics are sent back to your local client. When working with large datasets, this can result in a more interactive data visualization experience and help you develop post-processing pipelines faster.
+
+Prerequisites
+---------------
+To get started, you will need to have Paraview 5.10.0 installed on your local workstation. If you install a different version of Paraview, you may not be able to establish a connection to Paraview Server on the RCC. Visit https://www.paraview.org/download/ to download Paraview 5.10.0 for your operating system.
+
+These instructions assume that you have deployed an RCC-CFD cluster and have configured `OS Login <https://cloud.google.com/compute/docs/oslogin>`_ for your account so that you can SSH to Google Cloud VM instances using third party SSH utilities.
+
+If you'd like to deploy RCC-CFD from the Google Cloud Marketplace, see the :docs:`Deploy from Marketplace <../QuickStart/deploy_from_marketplace>`_ documentation.
+If you'd like to deploy RCC-CFD using Terraform, see the :docs:`Deploy with Terraform <../QuickStart/deploy_with_terraform>`_ documentation.
+
+You will need to create a `firewall rule <https://cloud.google.com/vpc/docs/using-firewalls>`_ for the network your cluster is deployed to that allows for tcp communications on port 11000 from your local workstation. If you deployed RCC-CFD using Terraform, this firewall rule is created for you.
+
+
+Connecting Paraview Client to Paraview Server
+-----------------------------------------------
+The instructions given below apply for Linux and MacOS workstations.
+
+1. Find the external IP address of your cluster's login node using the gcloud SDK. In the command below, replace :code:`[PROJECT-ID]` with the Google Cloud project ID where your cluster is deployed.
+
+.. code-block:: shell
+   
+   gcloud compute instances list --project=[PROJECT-ID]
+
+   
+2. On your local workstation, use :code:`scp` to copy the :code:`paraview-gcp.pvsc` server connection file. In the command below, :code:`[USERNAME]` is your OS Login username and `[IP-ADDRESS]` is the external IP address found in the previous step. If you do not know your OS Login username, use :code:`gcloud compute os-login describe-profile | grep username` to display your username.
+
+.. code-block:: shell
+   
+   mkdir -p ~/paraview/
+   scp [USERNAME]@[IP-ADDRESS]:/opt/share/paraview-gcp.pvsc ~/paraview/paraview-gcp.pvsc
+
+3. Start paraview on your local client.
+
+4. Using the toolbar, click on the "Connect to Server" icon and then click on "Load Server". In the file search menu that opens, navigate to :code:`~/paraview/` and open the :code:`paraview-gcp.pvsc` file and then click "Connect"
+
+5. Use the drop-down menu to select the terminal client; this will be the path to XTerm for your system. Set the full path to the :code:`ssh` command on your system (In your terminal, you can find this by running :code:`which ssh`. Set the SSH Username to your OS Login username. If you are using a non-default path for your public SSH key, you can modify the Public SSH Key field. Set the Login Node IP address to the external IP address found in step 1. You can leave the "Remote Script" and "Slurm Account" at their default values. Set the Slurm partition to the name of the partition you want to deploy Paraview on and set the number of processes to the number of MPI processes to use to run paraview server. Last, set the amount of memory (in GB) per MPI process and the number of hours to reserve the nodes for. When ready, click Ok. 
+   
+   
+
+This will open an XTerm window where a command will be executed to submit the Remote Script via :code:`sbatch`.  This will cause compute nodes to be provisioned and Paraview server to start and establish a reverse SSH connection to your local client. From here, you will be able to access files on your RCC for rendering.
+
 
 
 =================
