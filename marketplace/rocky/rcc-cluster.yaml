@@ -1,12 +1,12 @@
 
 imports:
-  - path: rcc-centos.jinja
+  - path: rcc-rocky.jinja
 
 resources:
 - name: rcc
-  type: rcc-centos.jinja
+  type: rcc-rocky.jinja
   properties:
-    cluster_name: rcc-centos
+    cluster_name: rcc-rocky
     zone: us-west1-b
     controller_image: projects/fluid-cluster-ops/global/images/<IMAGE_FAMILY>-<SHORT_SHA>
     controller_machine_type: n1-standard-2
