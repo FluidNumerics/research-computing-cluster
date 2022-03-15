@@ -6,7 +6,7 @@ resources:
 - name: rcc
   type: rcc-cluster.jinja
   properties:
-    cluster_name: rcc-wrf
+    cluster_name: <IMAGE_FAMILY>
     zone: us-west1-b
     controller_image: projects/fluid-cluster-ops/global/images/<IMAGE_FAMILY>-<SHORT_SHA>
     controller_machine_type: n1-standard-2
