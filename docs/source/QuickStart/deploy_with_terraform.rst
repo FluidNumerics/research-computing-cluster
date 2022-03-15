@@ -7,7 +7,8 @@ The Research Computing Cluster (RCC) can be deployed with Terraform infrastructu
 * `CentOS 7 <https://console.cloud.google.com/marketplace/fluid-cluster-ops/rcc-centos>`_
 * `Debian 10 <https://console.cloud.google.com/marketplace/fluid-cluster-ops/rcc-debian>`_
 * `Ubuntu 20.04 <https://console.cloud.google.com/marketplace/fluid-cluster-ops/rcc-ubuntu>`_
-* `CentOS 7 + WRF <https://console.cloud.google.com/marketplace/product/fluid-cluster-ops/rcc-wrf>`_
+* `Rocky Linux 8 <https://console.cloud.google.com/marketplace/product/fluid-cluster-ops/rcc-rocky>`_
+* `RCC-WRF <https://console.cloud.google.com/marketplace/product/fluid-cluster-ops/rcc-wrf>`_
 * `RCC-CFD (OpenFOAM, Paraview, GMSH) <https://console.cloud.google.com/marketplace/product/fluid-cluster-ops/cloud-cfd>`_
 
 All of the solutions have the same configurations available when deploying with Terraform. This guide will walk you through configuring a RCC deployment using the `rcc-tf <https://github.com/FluidNumerics/rcc-tf>`_ module by deploying `examples on the Research Computing Cluster repository <https://github.com/FluidNumerics/research-computing-cluster/tree/main/tf>`_.
@@ -19,19 +20,22 @@ Tutorial
 
 Getting Started
 ================
-First, decide which RCC solution you want to deploy (CentOS, Debian, or Ubuntu). This typically depends on operating system preference. 
+First, decide which RCC solution you want to deploy. The `RCC-CentOS <https://github.com/FluidNumerics/research-computing-cluster/tree/main/tf/rcc-centos>`_, `RCC-Debian <https://github.com/FluidNumerics/research-computing-cluster/tree/main/tf/rcc-debian>`_, `RCC-Ubuntu <https://github.com/FluidNumerics/research-computing-cluster/tree/main/tf/rcc-ubuntu>`_, and `RCC-Rocky solutions <https://github.com/FluidNumerics/research-computing-cluster/tree/main/tf/rcc-rocky>`_ differ primarily in the operating system. Each of these solutions comes with a suite of compilers (GCC, Intel OneAPI Compilers, and AOMP), OpenMPI, and Singularity.  
+
+Additionally, Fluid Numerics offers application specific solutions, including `RCC-WRF <https://github.com/FluidNumerics/research-computing-cluster/tree/main/tf/rcc-wrf>`_ and `RCC-CFD <https://github.com/FluidNumerics/research-computing-cluster/tree/main/tf/rcc-cfd>`_. Currently, RCC-WRF comes with the `Weather Research and Forecasting Model (WRF) <https://www.mmm.ucar.edu/weather-research-and-forecasting-model>`_, built with the Intel OneAPI Compilers, OpenMPI, and the cascadelake (c2) target architecture. The RCC-CFD solution comes with OpenFOAM, Paraview, and Gmsh in a set of target architecture optimized images for zen3 (c2d) and cascadelake (c2) architectures.
 
 Be aware of the following limitations :
 
-* Ubuntu and Debian clusters do not have Lustre client installed. If you plan on using a Lustre file system, you will need to use the CentOS solution.
-* The Debian cluster does not support ROCm, since AMD only support ROCm on Ubuntu and CentOS clusters.
+* Ubuntu, Debian, and Rocky Linux clusters do not have Lustre client installed. If you plan on using a Lustre file system, you will need to use the CentOS solution.
+* The Debian and Rocky Linux cluster does not support ROCm, since AMD only support ROCm on Ubuntu and CentOS clusters.
 
 To learn about pricing and licensing and features of the RCC solutions, you can start by heading to one of the following marketplace pages for the RCC 
 
 * `RCC-CentOS (CentOS 7) <https://console.cloud.google.com/marketplace/fluid-cluster-ops/rcc-centos>`_
 * `RCC-Debian (Debian 10) <https://console.cloud.google.com/marketplace/fluid-cluster-ops/rcc-debian>`_
 * `RCC-Ubuntu (Ubuntu 20.04) <https://console.cloud.google.com/marketplace/fluid-cluster-ops/rcc-ubuntu>`_
-* `CentOS 7 + WRF <https://console.cloud.google.com/marketplace/product/fluid-cluster-ops/rcc-wrf>`_
+* `Rocky Linux 8 <https://console.cloud.google.com/marketplace/product/fluid-cluster-ops/rcc-rocky>`_
+* `RCC-WRF <https://console.cloud.google.com/marketplace/product/fluid-cluster-ops/rcc-wrf>`_
 * `RCC-CFD (OpenFOAM, Paraview, GMSH) <https://console.cloud.google.com/marketplace/product/fluid-cluster-ops/cloud-cfd>`_
 
 We recommend that you `log into Google Cloud Shell <https://shell.cloud.google.com?show=terminal>`_, since Cloud Shell provides necessary authentication and command line tools, including Terraform, git, and the gcloud SDK. If you plan to use your own system, you will need to `install and initialize the gcloud SDK <https://cloud.google.com/sdk/docs/install>`_ and `Terraform <https://terraform.io>`_.
@@ -60,7 +64,7 @@ Set the following environment variables
 * :code:`RCC_NAME` - The name of your cluster. This name is used to prefix the names of resources in your cluster. For example, if :code:`RCC_NAME="rcc"`, your controller and login node will be named :code:`rcc-controller` and :code:`rcc-login-1` respectively.
 * :code:`RCC_PROJECT` - This is the your Google Cloud project ID. You can obtain your project ID by running :code:`gcloud config get-value project`.
 * :code:`RCC_ZONE` - The `Google Cloud zone <https://cloud.google.com/compute/docs/regions-zones>`_ where you want to deploy your cluster. Keep in mind that compute partitions can be placed in multiple zones during or after deployment; this will be covered in the next section of this tutorial.
-* :code:`RCC_MACHINE_TYPE` - The machine type to use for your first compute partition. In the next section of this tutorial, we'll cover how to add more partitions before deployment.
+* :code:`RCC_MACHINE_TYPE` - The machine type to use for your first compute partition. In the next section of this tutorial, we'll cover how to add more partitions before deployment. For the RCC-CFD solution, you do not need to set the :code:`RCC_MACHINE_TYPE` variable.
 * :code:`RCC_MAX_NODE` - The maximum number of nodes to support in the first compute partition.
 
 In the example below, we've configured a cluster named :code:`rcc` to be deployed in :code:`us-west1-b` with 10x :code:`c2-standard-8` compute nodes in the first partition.
