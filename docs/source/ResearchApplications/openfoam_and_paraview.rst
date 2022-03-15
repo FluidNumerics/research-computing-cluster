@@ -116,6 +116,7 @@ Optimize Performance with Target Architecture VM Images
 Google Cloud offers a variety of compute platforms and knowing which platform will provide the best performance and cost a'priori for a given simulation is challenging. Currently, Fluid Numerics' recommends using the c2d (AMD Epyc Milan) instances and OpenFOAM compiled with GCC 10.3.0 with the zen3 target optimizations. This recommendation is based on benchmarks of :code:`interFoam`. For other OpenFOAM applications, or even user-built solvers, this platform may be optimal but is not guaranteed. 
 
 To help facilitate performance discovery, Fluid Numerics provides the following target architecture VM images
+
 ========================== ===================== ==================
 Image Family               Target Architecture   Machine Type
 ========================== ===================== ==================
