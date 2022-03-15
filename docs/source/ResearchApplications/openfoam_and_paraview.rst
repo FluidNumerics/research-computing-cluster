@@ -56,6 +56,18 @@ To summarize this section,
 * :code:`/etc/profile.d/z11_paraview.sh` defines the necessary environment variables for exposing the Paraview binaries to each user automatically when they log in.
 
 
+Gmsh
+-----
+The RCC-CFD VM image includes `Gmsh <https://gmsh.info/>`_, an open-source mesh generator capable of creating mesh files for OpenFOAM simulations. The provided install of Gmsh has OpenCascade enabled, which allows you to create mesh files starting from OpenCascade CAD files. While Gmsh is a graphical application, users are encouraged to leverage Gmsh in a headless mode to process Gmsh scripts or with `pygmsh <https://github.com/nschloe/pygmsh>`_.
+
+Gmsh is installed under :code:`/opt/gmsh`. When a user logs in, the :code:`/etc/profile.d/z11_gmsh.sh` script is sourced automatically so that Gmsh is found in the default search path.
+
+To summarize this section,
+
+* :code:`/opt/gmsh` hosts the Gmsh binaries
+* :code:`/etc/profile.d/z11_gmsh.sh` defines the necessary environment variables for exposing the Gmsh binary to each user automatically when they log in.
+
+
 ====================================
 Add OpenFOAM to an existing cluster
 ====================================
@@ -161,7 +173,8 @@ The instructions given below apply for Linux and MacOS workstations.
 This will open an XTerm window where a command will be executed to submit the Remote Script via :code:`sbatch`.  This will cause compute nodes to be provisioned and Paraview server to start and establish a reverse SSH connection to your local client. From here, you will be able to access files on your RCC for rendering.
 
 
-
 =================
 Further Reading 
 =================
+
+
