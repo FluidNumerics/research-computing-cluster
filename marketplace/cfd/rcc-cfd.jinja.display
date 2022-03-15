@@ -44,7 +44,7 @@ description:
         - DESTINATION_POST_DEPLOY
         - DESTINATION_SOLUTION_CALL_TO_ACTION
 
-    - title: Run the NACA0012 Compressible Flow Benchmark
+    - title: Run the NACA0012 Benchmark
       url: >-
         https://fluidnumerics.github.io/rcc-codelabs/cloud-cfd/run-openfoam-on-gcp-with-cloud-cfd/#0
       destinations:
@@ -53,7 +53,7 @@ description:
         - DESTINATION_POST_DEPLOY
         - DESTINATION_SOLUTION_CALL_TO_ACTION
 
-    - title: Connect your Paraview client to Paraview server in the Cloud
+    - title: Get started with Paraview
       url: >-
         https://fluidnumerics.github.io/rcc-codelabs/cloud-cfd/connect-your-paraview-client-with-paraview-server/#0
       destinations:
