@@ -54,7 +54,7 @@ variable "controller_disk_type" {
 variable "controller_image" {
   description = "Slurm image to use for the controller instance"
   type        = string
-  default     = "projects/fluid-cluster-ops/images/family/rcc-cfd-gcc-x86"
+  default     = "projects/fluid-cluster-ops/global/images/family/rcc-cfd-gcc-x86"
 }
 
 variable "controller_instance_template" {
@@ -133,7 +133,7 @@ variable "login_disk_size_gb" {
 variable "login_image" {
   description = "Slurm image to use for login instances"
   type        = string
-  default     = "projects/fluid-cluster-ops/images/family/rcc-cfd-gcc-x86"
+  default     = "projects/fluid-cluster-ops/global/images/family/rcc-cfd-gcc-x86"
 }
 
 variable "login_instance_template" {
