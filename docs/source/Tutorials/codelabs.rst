@@ -5,6 +5,12 @@ Codelabs
 We have developed a set of codelabs that will walk you through basic operations of your Research Computing Cluster and can help you develop proof-of-concept for our RCC solutions.
 
 =========================
+RCC
+=========================
+
+`Get started with the RCC <https://fluidnumerics.github.io/rcc-codelabs/rcc/create-a-rcc/#0>`_
+
+=========================
 RCC-WRF
 =========================
 
